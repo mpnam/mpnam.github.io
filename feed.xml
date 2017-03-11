@@ -4,11 +4,11 @@
     <title>MPNAM Site</title>
     <description>Welcome to my website.
 </description>
-    <lastBuildDate>Sun, 12 Mar 2017 04:36:42 +0900</lastBuildDate>
-    <link>http://localhost:4000//</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Mar 2017 04:36:42 +0900</pubDate>
-    <lastBuildDate>Sun, 12 Mar 2017 04:36:42 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 12 Mar 2017 04:38:22 +0900</lastBuildDate>
+    <link>https://mpnam.github.io//</link>
+    <atom:link href="https://mpnam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 12 Mar 2017 04:38:22 +0900</pubDate>
+    <lastBuildDate>Sun, 12 Mar 2017 04:38:22 +0900</lastBuildDate>
     <generator>Jekyll v3.4.1</generator>
     
       <item>
@@ -46,8 +46,8 @@ So far, the working version of Python needed is v2.7. I have tried v3, but Jekyl
 &lt;/blockquote&gt;
 </description>
         <pubDate>Wed, 01 Mar 2017 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/jekyll/2017/03/01/syntax-highlighter-for-jekyll.html</link>
-        <guid isPermaLink="true">http://localhost:4000//jekyll/2017/03/01/syntax-highlighter-for-jekyll.html</guid>
+        <link>https://mpnam.github.io/jekyll/2017/03/01/syntax-highlighter-for-jekyll.html</link>
+        <guid isPermaLink="true">https://mpnam.github.io//jekyll/2017/03/01/syntax-highlighter-for-jekyll.html</guid>
         
         
         <category>Jekyll</category>
@@ -174,8 +174,8 @@ So far, the working version of Python needed is v2.7. I have tried v3, but Jekyl
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
         <pubDate>Wed, 01 Mar 2017 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/moodle/2017/03/01/create-new-services-in-moodle.html</link>
-        <guid isPermaLink="true">http://localhost:4000//moodle/2017/03/01/create-new-services-in-moodle.html</guid>
+        <link>https://mpnam.github.io/moodle/2017/03/01/create-new-services-in-moodle.html</link>
+        <guid isPermaLink="true">https://mpnam.github.io//moodle/2017/03/01/create-new-services-in-moodle.html</guid>
         
         
         <category>Moodle</category>
