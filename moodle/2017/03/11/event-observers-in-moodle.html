@@ -6,15 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Multiple Languages in Moodle Mobile 2</title>
-  <meta name="description" content="">
+  <title>Event Observers in Moodle</title>
+  <meta name="description" content="It is essential to support such thing likes event observers in any framework. In this post, I will show how to defined your observers in Moodle.">
 
   <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.teal-pink.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
   <link rel="stylesheet" href="//cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
   <link rel="stylesheet" href="https://mpnam.github.io/css/main.css">
-  <link rel="canonical" href="https://mpnam.github.io//moodle/2017/03/10/multiple-language-in-moodle-mobile-2.html">
+  <link rel="canonical" href="https://mpnam.github.io//moodle/2017/03/11/event-observers-in-moodle.html">
   <link rel="alternate" type="application/rss+xml" title="MPNAM Site" href="https://mpnam.github.io/feed.xml" />
 </head>
 
@@ -133,11 +133,11 @@
     <h5 class="subheader">
       
       March
-      10th,
+      11th,
       
       2017
     </h5>
-    <h1>Multiple Languages in Moodle Mobile 2</h1>
+    <h1>Event Observers in Moodle</h1>
     <!-- Categories -->
     <div class="categories">
       
@@ -158,25 +158,81 @@
     </div>
   </header>
   <article>
-    <hr />
+    <p>It is essential to support such thing likes event observers in any framework. In this post, I will show how to defined your observers in Moodle.</p>
 
-<h3 id="change-the-app-strings">Change the app strings</h3>
-<p>Language strings are located in:</p>
+<hr />
 
-<blockquote>
-  <p>www/core/lang/ folder (a different file for each language)<br />
-www/core/components/COMPONENT_NAME/lang folder<br />
-www/addons/ADDON_NAME/lang folder</p>
-</blockquote>
+<h2 id="events">Events</h2>
 
-<p>In order to update translation, simply edit <em>_lang_.json</em> file content. The syntax is straightforward: <code>"key": "content"</code>.</p>
+<p>In Moodle, when an action takes place, an event is created by a core API or plugin. For example, core API events are stored in <code>/lib/classes/event</code>. All events must be extended from abstact class <strong>base</strong>. In order to trigger an event <code>$event</code>, you simply executing <code>$event-&gt;trigger()</code>. For example, the following codes is for trigger the event of adding new blog post.</p>
 
-<p><strong>Note:</strong> Use <a href="http://jsonlint.com/">jsonlint.com</a> to validate that the new language file is correct.</p>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span><span class="nv">$eventparms</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;context&#39;</span> <span class="o">=&gt;</span> <span class="nv">$context</span><span class="p">,</span>
+                <span class="s1">&#39;objectid&#39;</span> <span class="o">=&gt;</span> <span class="nv">$newexternal</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+                <span class="s1">&#39;other&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="nv">$newexternal</span><span class="o">-&gt;</span><span class="na">url</span><span class="p">));</span>
+<span class="nv">$event</span> <span class="o">=</span> <span class="nx">\core\event\blog_external_added</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$eventparms</span><span class="p">);</span>
+<span class="nv">$event</span><span class="o">-&gt;</span><span class="na">trigger</span><span class="p">();</span></code></pre></figure>
 
-<p>Remember to <strong>run gulp</strong> or <strong>ionic serve</strong> in the project root folder so the build files are created.</p>
+<h2 id="observers">Observers</h2>
 
-<h3 id="add-new-language">Add new language</h3>
-<p>Besides copying new <em>lang</em>.json file into lang folder. You also need to update <em>config.json</em> file in <code>/www</code> folder, key <code>"language"</code>.</p>
+<p>Observers are described in <code>/lib/db/events.php</code> in the array <code>$observers</code>. Each observer is defined with the following properties (as described in <a href="https://docs.moodle.org/dev/Event_2#What_are_events.3F">Moodle’s docs</a>)</p>
+
+<pre><code>    * eventname – fully qualified event class name or "*" indicating all events, ex.: \plugintype_pluginname\event\something_happened.
+    * callback - PHP callable type.
+    * includefile - optional. File to be included before calling the observer. Path relative to dirroot.
+    * priority - optional. Defaults to 0. Observers with higher priority are notified first.
+    * internal - optional. Defaults to true. Non-internal observers are not called during database transactions, but instead after a successful commit of the transaction
+</code></pre>
+
+<p>In this post, I am going to define my two new observers to observe events blog_entry_created and comment_created.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span><span class="nv">$observers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;eventname&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;\core\event\blog_entry_created&#39;</span><span class="p">,</span>
+	    <span class="s1">&#39;includefile&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/blog/classes/observer.php&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;callback&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;core_blog_observer::observe_blog_created&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;eventname&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;\core\event\comment_created&#39;</span><span class="p">,</span>
+	    <span class="s1">&#39;includefile&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/comment/classes/observer.php&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;callback&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;core_comment_observer::observe_comment_created&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+
+<span class="p">);</span></code></pre></figure>
+
+<p><strong>Note:</strong> You need to upgrade Moodle site (increment your version.php) to apply these changes.</p>
+
+<p>As in the example shown above, I need to define my observer named <code>observe_blog_created</code> in class <code>core_blog_observer</code> stored in <code>/blog/classes/observer.php</code>.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span><span class="sd">/**</span>
+<span class="sd"> * Event observer for blog.</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">core_blog_observer</span> <span class="p">{</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Triggered when &#39;blog_entry_updated&#39; event is triggered.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param \core\event\blog_entry_updated $event</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">observe_blog_updated</span><span class="p">(</span><span class="nx">\core\event\blog_entry_updated</span> <span class="nv">$event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//@todo</span>
+    <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="properties">Properties</h2>
+
+<p>In order to create the instance of an event, there are some properties you need to pass. You could check it in <a href="https://docs.moodle.org/dev/Event_2#What_are_events.3F">Moodle’s documentation</a>. Besides, you can look directly into <strong>base</strong> class in <code>/lib/db/event/base.php</code></p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span><span class="k">private</span> <span class="k">static</span> <span class="nv">$fields</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;eventname&#39;</span><span class="p">,</span> <span class="s1">&#39;component&#39;</span><span class="p">,</span> <span class="s1">&#39;action&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="s1">&#39;objecttable&#39;</span><span class="p">,</span> <span class="s1">&#39;objectid&#39;</span><span class="p">,</span> <span class="s1">&#39;crud&#39;</span><span class="p">,</span> <span class="s1">&#39;edulevel&#39;</span><span class="p">,</span> <span class="s1">&#39;contextid&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contextlevel&#39;</span><span class="p">,</span> <span class="s1">&#39;contextinstanceid&#39;</span><span class="p">,</span> <span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="s1">&#39;courseid&#39;</span><span class="p">,</span> <span class="s1">&#39;relateduserid&#39;</span><span class="p">,</span> <span class="s1">&#39;anonymous&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;timecreated&#39;</span><span class="p">);</span></code></pre></figure>
+
+<p>Note that you can access these fields values in your observer with parameter <code>$event</code>. To any information you want to pass, you should use field <code>other</code> (variable array). Then in your observer, you get them in <code>$event-&gt;other</code>.</p>
+
+<p>That’s all. Goodluck :-).</p>
 
   </article>
 
@@ -228,13 +284,13 @@ www/addons/ADDON_NAME/lang folder</p>
   <div class="mdl-grid pagination">
     <div class="mdl-cell mdl-cell--6-col previous">
       
-        <a class="mdl-button mdl-button--primary" href="/jekyll/2017/03/01/syntax-highlighter-for-jekyll.html" title="Syntax Highlighter for Jekyll">&larr; Previous Post</a>
+        <a class="mdl-button mdl-button--primary" href="/moodle/2017/03/10/multiple-language-in-moodle-mobile-2.html" title="Multiple Languages in Moodle Mobile 2">&larr; Previous Post</a>
       
     </div>
 
     <div class="mdl-cell mdl-cell--6-col next">
       
-        <a class="mdl-button mdl-button--primary" href="/moodle/2017/03/11/event-observers-in-moodle.html" title="Event Observers in Moodle">Next Post &rarr;</a>
+        <a class="mdl-button mdl-button--primary" disabled>Next Post &rarr;</a>
       
     </div>
   </div>
