@@ -388,6 +388,12 @@ img {
   margin: 0 0 1rem;
   border-radius: 5px; }
 
+code {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 1px 3px; }
+
 /**
  * Syntax highlighting styles
  */

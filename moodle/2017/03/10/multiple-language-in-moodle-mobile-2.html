@@ -6,16 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>MPNAM Site</title>
-  <meta name="description" content="Welcome to my website.
-">
+  <title>Multiple Languages in Moodle Mobile 2</title>
+  <meta name="description" content="">
 
   <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.teal-pink.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
   <link rel="stylesheet" href="//cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
   <link rel="stylesheet" href="https://mpnam.github.io/css/main.css">
-  <link rel="canonical" href="https://mpnam.github.io//">
+  <link rel="canonical" href="https://mpnam.github.io//moodle/2017/03/10/multiple-language-in-moodle-mobile-2.html">
   <link rel="alternate" type="application/rss+xml" title="MPNAM Site" href="https://mpnam.github.io/feed.xml" />
 </head>
 
@@ -129,71 +128,118 @@
       <main class="mdl-layout__content">
         <div id="container" class="paper-container">
           <div class="paper-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell">
-            <div class="paper-home">
-  
-    <div class="post">
-      <div class="header">
-        <h5 class="subheader">
+            <div class="post">
+  <header>
+    <h5 class="subheader">
+      
+      March
+      10th,
+      
+      2017
+    </h5>
+    <h1>Multiple Languages in Moodle Mobile 2</h1>
+    <!-- Categories -->
+    <div class="categories">
+      
+        Posted in:
+        <ul class="categories-list">
           
-          March
-          10th,
           
-          2017
-        </h5>
-        <h1>Multiple Languages in Moodle Mobile 2</h1>
-      </div>
-      <hr /> <h3 id="change-the-app-strings">Change the app strings</h3> <p>Language strings are located in:</p> <blockquote> <p>www/core/lang/ folder (a different file for each language)<br /> www/core/components/COMPONENT_NAME/lang folder<br /> www/addons/ADDON_NAME/lang folder</p> </blockquote> <p>In order to update translation, simply edit <em>_lang_.json</em> file content. The syntax is straightforward: <code>"key": "content"</code>.</p> <p><strong>Note:</strong> Use <a href="http://jsonlint.com/">jsonlint.com</a> to validate that the new language file is correct.</p> <p>Remember to <strong>run gulp</strong> or <strong>ionic serve</strong> in the project root folder so the build files are created.</p>...
-      <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/moodle/2017/03/10/multiple-language-in-moodle-mobile-2.html">Read more</a>
+            
+              <li>
+                <a href="/#Moodle-ref">
+                  Moodle
+                </a>
+              </li>
+            
+          
+        </ul>
+      
     </div>
-  
-    <div class="post">
-      <div class="header">
-        <h5 class="subheader">
-          
-          March
-          1st,
-          
-          2017
-        </h5>
-        <h1>Syntax Highlighter for Jekyll</h1>
+  </header>
+  <article>
+    <hr />
+
+<h3 id="change-the-app-strings">Change the app strings</h3>
+<p>Language strings are located in:</p>
+
+<blockquote>
+  <p>www/core/lang/ folder (a different file for each language)<br />
+www/core/components/COMPONENT_NAME/lang folder<br />
+www/addons/ADDON_NAME/lang folder</p>
+</blockquote>
+
+<p>In order to update translation, simply edit <em>_lang_.json</em> file content. The syntax is straightforward: <code>"key": "content"</code>.</p>
+
+<p><strong>Note:</strong> Use <a href="http://jsonlint.com/">jsonlint.com</a> to validate that the new language file is correct.</p>
+
+<p>Remember to <strong>run gulp</strong> or <strong>ionic serve</strong> in the project root folder so the build files are created.</p>
+
+<h3 id="add-new-language">Add new language</h3>
+<p>Besides copying new <em>lang</em>.json file into lang folder. You also need to update <em>config.json</em> file in <code>/www</code> folder, key <code>"language"</code>.</p>
+
+  </article>
+
+  <div class="tags">
+    
+  </div>
+
+  <div class="mdl-grid">
+    <section class="share mdl-cell mdl-cell--6-col">
+      <h4>Share Post</h4>
+
+      <a id="facebook" class="mdl-button mdl-button--primary facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="icon">
+          <svg viewBox="0 0 512 512"><path style="fill: #3864A3" d="M211.9 197.4h-36.7v59.9h36.7V433.1h70.5V256.5h49.2l5.2-59.1h-54.4c0 0 0-22.1 0-33.7 0-13.9 2.8-19.5 16.3-19.5 10.9 0 38.2 0 38.2 0V82.9c0 0-40.2 0-48.8 0 -52.5 0-76.1 23.1-76.1 67.3C211.9 188.8 211.9 197.4 211.9 197.4z"/></svg><!--[if lt IE 9]><em>Facebook</em><![endif]-->
+        </span>
+        Facebook
+      </a>
+      <div class="mdl-tooltip" for="facebook">
+        Share post on Facebook
       </div>
-      <hr /> <p>In Bitbucket or Github, it is quite easy to highligh my code using markdown syntax. But in Jekyll, it does not work in the same way. So far, I only know two ways to highligh code in Jekyll which are Pygments and Rouge. Rouge is faster and easier to install but does not support as many languages as Pygments. This post is about Pygments.</p> <h2 id="prepare">Prepare</h2> <p>Pygments is the Python syntax highlighter. Therefore,...
-      <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/jekyll/2017/03/01/syntax-highlighter-for-jekyll.html">Read more</a>
-    </div>
-  
-    <div class="post">
-      <div class="header">
-        <h5 class="subheader">
-          
-          March
-          1st,
-          
-          2017
-        </h5>
-        <h1>Create New Services in Moodle</h1>
+
+      <a id="gplus" class="mdl-button mdl-button--primary gplus" onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="icon">
+          <svg viewBox="0 0 512 512"><path style="fill: #DC4A38" d="M416.6 179.9h-41.5v41.5h-20.8v-41.5h-41.5v-20.8h41.5v-41.5h20.8v41.5h41.5V179.9zM299.2 351.6c0 31.1-28.4 69-99.9 69 -52.3 0-95.9-22.5-95.9-60.5 0-29.3 18.5-67.3 105.1-67.3 -12.9-10.5-16-25.1-8.2-41 -50.7 0-76.7-29.8-76.7-67.7 0-37 27.5-70.7 83.7-70.7 14.2 0 90 0 90 0l-20.1 21.1h-23.6c16.7 9.5 25.5 29.2 25.5 50.9 0 19.9-11 36-26.6 48.1 -27.7 21.4-20.6 33.4 8.4 54.6C289.7 309.6 299.2 326.2 299.2 351.6zM243.1 186.8c-4.2-31.8-24.9-58-49.2-58.7 -24.3-0.7-40.5 23.7-36.3 55.5 4.2 31.8 27.2 54.1 51.5 54.8C233.3 239.1 247.3 218.6 243.1 186.8zM268.1 354.8c0-26.2-23.9-51.2-64-51.2 -36.1-0.4-66.8 22.8-66.8 49.8 0 27.5 26.1 50.4 62.2 50.4C245.8 403.7 268.1 382.2 268.1 354.8z"/></svg><!--[if lt IE 9]><em>GooglePlus</em><![endif]-->
+        </span>
+        Google+
+      </a>
+      <div class="mdl-tooltip" for="gplus">
+        Share post on Google+
       </div>
-      <hr /> <h2 id="mobile-web-services">Mobile Web Services</h2> <p>In order to use mobile web services (similar to other kind of services), you need to enable it as follows:</p> <pre><code> * In Settings &gt; Site administration &gt; Plugins &gt; Web services &gt; External services * Check "Enable mobile web services" </code></pre> <p>You can see the API Documentation in <code>Settings &gt; Site administration &gt; Plugins &gt; Web services &gt; API Documentation</code></p> <h2 id="declare-new-services-functions">Declare new services functions</h2> <p>Firstly, you need...
-      <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/moodle/2017/03/01/create-new-services-in-moodle.html">Read more</a>
-    </div>
-  
+    </section>
+
+    
+      <section class="mdl-cell mdl-cell--6-col author">
+        <h4>Author</h4>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--9-col">
+            <h5 class="section-title author-name">
+              Nam Mai
+            </h5>
+            <p class="author-bio">Software Engineer</p>
+          </div>
+        </div>
+      </section>
+    
+  </div>
 
   <div class="mdl-grid pagination">
-    <div class="mdl-cell mdl-cell--4-col previous">
+    <div class="mdl-cell mdl-cell--6-col previous">
       
-        <a class="mdl-button mdl-button--primary" disabled>&larr; Newer</a>
+        <a class="mdl-button mdl-button--primary" href="/jekyll/2017/03/01/syntax-highlighter-for-jekyll.html" title="Syntax Highlighter for Jekyll">&larr; Previous Post</a>
       
     </div>
 
-    <div class="mdl-cell mdl-cell--4-col indicator subheader">
-      Page 1 / 1
-    </div>
-
-    <div class="mdl-cell mdl-cell--4-col next">
+    <div class="mdl-cell mdl-cell--6-col next">
       
-        <a class="mdl-button mdl-button--primary" disabled>Older &rarr;</a>
+        <a class="mdl-button mdl-button--primary" disabled>Next Post &rarr;</a>
       
     </div>
   </div>
+
+  
 </div>
 
           </div>

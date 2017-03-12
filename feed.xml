@@ -4,12 +4,43 @@
     <title>MPNAM Site</title>
     <description>Welcome to my website.
 </description>
-    <lastBuildDate>Sun, 12 Mar 2017 04:38:22 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 12 Mar 2017 14:27:34 +0900</lastBuildDate>
     <link>https://mpnam.github.io//</link>
     <atom:link href="https://mpnam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Mar 2017 04:38:22 +0900</pubDate>
-    <lastBuildDate>Sun, 12 Mar 2017 04:38:22 +0900</lastBuildDate>
+    <pubDate>Sun, 12 Mar 2017 14:27:34 +0900</pubDate>
+    <lastBuildDate>Sun, 12 Mar 2017 14:27:34 +0900</lastBuildDate>
     <generator>Jekyll v3.4.1</generator>
+    
+      <item>
+        <title>Multiple Languages in Moodle Mobile 2</title>
+        <description>&lt;hr /&gt;
+
+&lt;h3 id=&quot;change-the-app-strings&quot;&gt;Change the app strings&lt;/h3&gt;
+&lt;p&gt;Language strings are located in:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;www/core/lang/ folder (a different file for each language)&lt;br /&gt;
+www/core/components/COMPONENT_NAME/lang folder&lt;br /&gt;
+www/addons/ADDON_NAME/lang folder&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In order to update translation, simply edit &lt;em&gt;_lang_.json&lt;/em&gt; file content. The syntax is straightforward: &lt;code&gt;&quot;key&quot;: &quot;content&quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Use &lt;a href=&quot;http://jsonlint.com/&quot;&gt;jsonlint.com&lt;/a&gt; to validate that the new language file is correct.&lt;/p&gt;
+
+&lt;p&gt;Remember to &lt;strong&gt;run gulp&lt;/strong&gt; or &lt;strong&gt;ionic serve&lt;/strong&gt; in the project root folder so the build files are created.&lt;/p&gt;
+
+&lt;h3 id=&quot;add-new-language&quot;&gt;Add new language&lt;/h3&gt;
+&lt;p&gt;Besides copying new &lt;em&gt;lang&lt;/em&gt;.json file into lang folder. You also need to update &lt;em&gt;config.json&lt;/em&gt; file in &lt;code&gt;/www&lt;/code&gt; folder, key &lt;code&gt;&quot;language&quot;&lt;/code&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 10 Mar 2017 00:00:00 +0900</pubDate>
+        <link>https://mpnam.github.io/moodle/2017/03/10/multiple-language-in-moodle-mobile-2.html</link>
+        <guid isPermaLink="true">https://mpnam.github.io//moodle/2017/03/10/multiple-language-in-moodle-mobile-2.html</guid>
+        
+        
+        <category>Moodle</category>
+        
+      </item>
     
       <item>
         <title>Syntax Highlighter for Jekyll</title>
