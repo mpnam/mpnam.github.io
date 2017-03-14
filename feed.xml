@@ -4,12 +4,67 @@
     <title>MPNAM Site</title>
     <description>Welcome to my website.
 </description>
-    <lastBuildDate>Mon, 13 Mar 2017 02:34:52 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 15 Mar 2017 00:16:04 +0900</lastBuildDate>
     <link>https://mpnam.github.io//</link>
     <atom:link href="https://mpnam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 13 Mar 2017 02:34:52 +0900</pubDate>
-    <lastBuildDate>Mon, 13 Mar 2017 02:34:52 +0900</lastBuildDate>
+    <pubDate>Wed, 15 Mar 2017 00:16:04 +0900</pubDate>
+    <lastBuildDate>Wed, 15 Mar 2017 00:16:04 +0900</lastBuildDate>
     <generator>Jekyll v3.4.1</generator>
+    
+      <item>
+        <title>DPLL Algorithm</title>
+        <description>&lt;p&gt;This post is assumed that the readers have background in logic. DPLL (Davis-Putnam-Logemann-Loveland) is the basic algorithm for SAT solving.&lt;/p&gt;
+
+&lt;h2 id=&quot;examples&quot;&gt;Examples&lt;/h2&gt;
+&lt;p&gt;The easiest way to learn an algorithm is from example. SAT problem is checking if a boolean formula is satisfiable. Because the first step of DPLL is to convert the formula into conjunctive normal form (CNF), I will use CNF form for any formula from now. Consider the following formula &lt;script type=&quot;math/tex&quot;&gt;K\equiv(p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q)&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;K&lt;/script&gt; is satisfiable if there exists a model &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;M\models K&lt;/script&gt;. In this example, &lt;script type=&quot;math/tex&quot;&gt;K&lt;/script&gt; is satisfiable with model &lt;script type=&quot;math/tex&quot;&gt;\{p\mapsto \top, q\mapsto \top\,s\mapsto \top\}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Intuitively, to satisfy &lt;script type=&quot;math/tex&quot;&gt;K&lt;/script&gt;, we need to find assignments such that satisfy &lt;script type=&quot;math/tex&quot;&gt;(p \vee q), (\neg p \vee q), (p\vee \neg q), (s\vee \neg p\vee q)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;(\neg s\vee p \vee \neg q)&lt;/script&gt;. Firstly, we randomly assign &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;\top&lt;/script&gt;. With this assumption, we obviously see that &lt;script type=&quot;math/tex&quot;&gt;(p \vee q), (p\vee \neg q)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;(\neg s\vee p \vee \neg q)&lt;/script&gt; are satisfied. In order to satisfy &lt;script type=&quot;math/tex&quot;&gt;(\neg p \vee q)&lt;/script&gt;, we need to assign &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;\top&lt;/script&gt;. With this new assumption, we obviously see that &lt;script type=&quot;math/tex&quot;&gt;(s\vee \neg p\vee q)&lt;/script&gt; is satisfied. Finally, we have already satisfy all formulas by assignments &lt;script type=&quot;math/tex&quot;&gt;\{p\mapsto \top, q\mapsto \top\}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Assume that in the first step, we randomly assign &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;\bot&lt;/script&gt;. With this assumption, we obviously see that &lt;script type=&quot;math/tex&quot;&gt;(\neg p \vee q)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;(s\vee \neg p\vee q)&lt;/script&gt; are satisfied. In order to satisfy &lt;script type=&quot;math/tex&quot;&gt;(p\vee \neg q)&lt;/script&gt;, we need to assign &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;\bot&lt;/script&gt;. However, we see that with the current assumptions, &lt;script type=&quot;math/tex&quot;&gt;(p \vee q)&lt;/script&gt; is unsatisfiable. So we backjump to the previous assignment and assign &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;\top&lt;/script&gt;. However, the new assumptions makes &lt;script type=&quot;math/tex&quot;&gt;(p \vee q)&lt;/script&gt; is unsatisfiable. Therefore, we backjump to the assignment of &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;. And go on,…&lt;/p&gt;
+
+&lt;h2 id=&quot;abstract-dpll&quot;&gt;Abstract DPLL&lt;/h2&gt;
+&lt;p&gt;Before simulating how DPLL works over the example shown above. I would like to use the abstract version of DPLL which represented in Leonardo de Moura’s slides, &lt;em&gt;Summer School on Logic and Theorem Proving&lt;/em&gt;
+&lt;img src=&quot;https://mpnam.github.io//assets/img/dpll.png&quot; alt=&quot;Summer School on Logic and Theorem Proving - Leonardo de Moura&quot; style=&quot;margin:0 auto;width:60%;height:60%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Each state of the procedure is a 3-tuple &lt;script type=&quot;math/tex&quot;&gt;\langle M,F,C \rangle&lt;/script&gt; consisting of partial assignment &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;, the input clause set &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; and a set &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; of conflict clauses derived from &lt;script type=&quot;math/tex&quot;&gt;K&lt;/script&gt;. I will give an intuitive explanation of each rule:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(Decide):&lt;/strong&gt; select an literal in &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; which has not been assigned yet, then assign it in &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;. It is similar to ramdomly assignment in the example.&lt;br /&gt;
+&lt;strong&gt;(UnitPropagate):&lt;/strong&gt; with the current assignment &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;, we are looking for some formula in &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; only satisfies this formula if &lt;script type=&quot;math/tex&quot;&gt;l&lt;/script&gt; is assigned. It looks like in Sudoku game. You may have some assumptions over some places. The other values over other places are filled based on those assumptions. &lt;br /&gt;
+&lt;strong&gt;(Conflict):&lt;/strong&gt; The current $M$ leads to conflict state where there is exists clauses such that they are unsatisfiable. &lt;br /&gt;
+&lt;strong&gt;(Resolve):&lt;/strong&gt;  Intuitively, if there is a model satisfies &lt;script type=&quot;math/tex&quot;&gt;(C \vee \neg l) \wedge (D \vee l)&lt;/script&gt;, this model also satisfies &lt;script type=&quot;math/tex&quot;&gt;C\vee D&lt;/script&gt;. &lt;br /&gt;
+&lt;strong&gt;(Learn):&lt;/strong&gt; We may imply new formulas after resolving step. Learn simply update new formulas into input set.
+&lt;strong&gt;(Backjump):&lt;/strong&gt; Backjump to the point where we can satisfy &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; by new decide.
+&lt;strong&gt;(Unsat):&lt;/strong&gt; Obviously, if we unable to find an assignment to resolve conflict, it is unsatisfiable.&lt;/p&gt;
+
+&lt;h2 id=&quot;examples-using-dpll&quot;&gt;Examples using DPLL&lt;/h2&gt;
+&lt;p&gt;Consider the following example:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\emptyset \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q) \Rightarrow \textbf{(Decide)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q) \Rightarrow \textbf{(UnitPropagate)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p, q[p \vee q] \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q) \Rightarrow \textbf{(Conflict)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p, q[p \vee q] \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q) \ ||\ (p\vee \neg q) \Rightarrow \textbf{(Resolve)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p, q[p \vee q] \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q) \ ||\ p \Rightarrow \textbf{(Learn)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\neg p, q[p \vee q] \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q)\wedge p \ ||\ p \Rightarrow \textbf{(Backjump)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q)\wedge p \Rightarrow \textbf{(UnitPropagate)}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p, q[\neg p \vee q] \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q)\wedge p&lt;/script&gt;
+
+&lt;p&gt;The algorithm stops when &lt;script type=&quot;math/tex&quot;&gt;M\models F&lt;/script&gt;. In this case is &lt;script type=&quot;math/tex&quot;&gt;p,q&lt;/script&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 14 Mar 2017 00:00:00 +0900</pubDate>
+        <link>https://mpnam.github.io/research/2017/03/14/dpll-algorithm.html</link>
+        <guid isPermaLink="true">https://mpnam.github.io//research/2017/03/14/dpll-algorithm.html</guid>
+        
+        
+        <category>Research</category>
+        
+      </item>
     
       <item>
         <title>Event Observers in Moodle</title>

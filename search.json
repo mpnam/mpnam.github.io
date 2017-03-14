@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "DPLL Algorithm",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/research/2017/03/14/dpll-algorithm.html",
+      "date"     : "2017-03-14 00:00:00 +0900"
+    } ,
+  
+    {
       "title"    : "Event Observers in Moodle",
       "category" : "",
       "tags"     : "",
