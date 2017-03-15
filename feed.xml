@@ -4,16 +4,18 @@
     <title>MPNAM Site</title>
     <description>Welcome to my website.
 </description>
-    <lastBuildDate>Wed, 15 Mar 2017 00:16:04 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 15 Mar 2017 15:41:02 +0900</lastBuildDate>
     <link>https://mpnam.github.io//</link>
     <atom:link href="https://mpnam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 15 Mar 2017 00:16:04 +0900</pubDate>
-    <lastBuildDate>Wed, 15 Mar 2017 00:16:04 +0900</lastBuildDate>
+    <pubDate>Wed, 15 Mar 2017 15:41:02 +0900</pubDate>
+    <lastBuildDate>Wed, 15 Mar 2017 15:41:02 +0900</lastBuildDate>
     <generator>Jekyll v3.4.1</generator>
     
       <item>
         <title>DPLL Algorithm</title>
         <description>&lt;p&gt;This post is assumed that the readers have background in logic. DPLL (Davis-Putnam-Logemann-Loveland) is the basic algorithm for SAT solving.&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h2 id=&quot;examples&quot;&gt;Examples&lt;/h2&gt;
 &lt;p&gt;The easiest way to learn an algorithm is from example. SAT problem is checking if a boolean formula is satisfiable. Because the first step of DPLL is to convert the formula into conjunctive normal form (CNF), I will use CNF form for any formula from now. Consider the following formula &lt;script type=&quot;math/tex&quot;&gt;K\equiv(p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q)&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;K&lt;/script&gt; is satisfiable if there exists a model &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;M\models K&lt;/script&gt;. In this example, &lt;script type=&quot;math/tex&quot;&gt;K&lt;/script&gt; is satisfiable with model &lt;script type=&quot;math/tex&quot;&gt;\{p\mapsto \top, q\mapsto \top\,s\mapsto \top\}&lt;/script&gt;.&lt;/p&gt;
@@ -32,8 +34,8 @@
 &lt;strong&gt;(UnitPropagate):&lt;/strong&gt; with the current assignment &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;, we are looking for some formula in &lt;script type=&quot;math/tex&quot;&gt;F&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; such that &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; only satisfies this formula if &lt;script type=&quot;math/tex&quot;&gt;l&lt;/script&gt; is assigned. It looks like in Sudoku game. You may have some assumptions over some places. The other values over other places are filled based on those assumptions. &lt;br /&gt;
 &lt;strong&gt;(Conflict):&lt;/strong&gt; The current $M$ leads to conflict state where there is exists clauses such that they are unsatisfiable. &lt;br /&gt;
 &lt;strong&gt;(Resolve):&lt;/strong&gt;  Intuitively, if there is a model satisfies &lt;script type=&quot;math/tex&quot;&gt;(C \vee \neg l) \wedge (D \vee l)&lt;/script&gt;, this model also satisfies &lt;script type=&quot;math/tex&quot;&gt;C\vee D&lt;/script&gt;. &lt;br /&gt;
-&lt;strong&gt;(Learn):&lt;/strong&gt; We may imply new formulas after resolving step. Learn simply update new formulas into input set.
-&lt;strong&gt;(Backjump):&lt;/strong&gt; Backjump to the point where we can satisfy &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; by new decide.
+&lt;strong&gt;(Learn):&lt;/strong&gt; We may imply new formulas after resolving step. Learn simply update new formulas into input set. &lt;br /&gt;
+&lt;strong&gt;(Backjump):&lt;/strong&gt; Backjump to the point where we can satisfy &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; by new decide. &lt;br /&gt;
 &lt;strong&gt;(Unsat):&lt;/strong&gt; Obviously, if we unable to find an assignment to resolve conflict, it is unsatisfiable.&lt;/p&gt;
 
 &lt;h2 id=&quot;examples-using-dpll&quot;&gt;Examples using DPLL&lt;/h2&gt;

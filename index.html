@@ -18,10 +18,10 @@
   <link rel="canonical" href="https://mpnam.github.io//">
   <link rel="alternate" type="application/rss+xml" title="MPNAM Site" href="https://mpnam.github.io/feed.xml" />
 
-  <script type="text/javascript" async
+  
+<script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-
 </head>
 
 
@@ -147,7 +147,7 @@
         </h5>
         <h1>DPLL Algorithm</h1>
       </div>
-      <p>This post is assumed that the readers have background in logic. DPLL (Davis-Putnam-Logemann-Loveland) is the basic algorithm for SAT solving.</p> <h2 id="examples">Examples</h2> <p>The easiest way to learn an algorithm is from example. SAT problem is checking if a boolean formula is satisfiable. Because the first step of DPLL is to convert the formula into conjunctive normal form (CNF), I will use CNF form for any formula from now. Consider the following formula <script type="math/tex">K\equiv(p \vee...
+      <p>This post is assumed that the readers have background in logic. DPLL (Davis-Putnam-Logemann-Loveland) is the basic algorithm for SAT solving.</p> <hr /> <h2 id="examples">Examples</h2> <p>The easiest way to learn an algorithm is from example. SAT problem is checking if a boolean formula is satisfiable. Because the first step of DPLL...
       <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/research/2017/03/14/dpll-algorithm.html">Read more</a>
     </div>
   
@@ -162,7 +162,7 @@
         </h5>
         <h1>Event Observers in Moodle</h1>
       </div>
-      <p>It is essential to support such thing likes event observers in any framework. In this post, I will show how to defined your observers in Moodle.</p> <hr /> <h2 id="events">Events</h2> <p>In Moodle, when an action takes place, an event is created by a core API or plugin. For example, core API events are stored in <code>/lib/classes/event</code>. All events must be extended from abstact class <strong>base</strong>. In order to trigger an event <code>$event</code>, you simply executing...
+      <p>It is essential to support such thing likes event observers in any framework. In this post, I will show how to defined your observers in Moodle.</p> <hr /> <h2 id="events">Events</h2> <p>In Moodle, when an action takes place, an event is created by a core API or plugin. For example, core...
       <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/moodle/2017/03/11/event-observers-in-moodle.html">Read more</a>
     </div>
   
@@ -177,7 +177,7 @@
         </h5>
         <h1>Multiple Languages in Moodle Mobile 2</h1>
       </div>
-      <hr /> <h3 id="change-the-app-strings">Change the app strings</h3> <p>Language strings are located in:</p> <blockquote> <p>www/core/lang/ folder (a different file for each language)<br /> www/core/components/COMPONENT_NAME/lang folder<br /> www/addons/ADDON_NAME/lang folder</p> </blockquote> <p>In order to update translation, simply edit <em>_lang_.json</em> file content. The syntax is straightforward: <code>"key": "content"</code>.</p> <p><strong>Note:</strong> Use <a href="http://jsonlint.com/">jsonlint.com</a> to validate that the new language file is correct.</p> <p>Remember to <strong>run gulp</strong> or <strong>ionic serve</strong> in the project root folder so the build files are created.</p>...
+      <hr /> <h3 id="change-the-app-strings">Change the app strings</h3> <p>Language strings are located in:</p> <blockquote> <p>www/core/lang/ folder (a different file for each language)<br /> www/core/components/COMPONENT_NAME/lang folder<br /> www/addons/ADDON_NAME/lang folder</p> </blockquote> <p>In order to update translation, simply edit <em>_lang_.json</em> file content. The syntax is straightforward: <code>"key": "content"</code>.</p> <p><strong>Note:</strong> Use <a href="http://jsonlint.com/">jsonlint.com</a> to validate...
       <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/moodle/2017/03/10/multiple-language-in-moodle-mobile-2.html">Read more</a>
     </div>
   
@@ -192,7 +192,7 @@
         </h5>
         <h1>Syntax Highlighter for Jekyll</h1>
       </div>
-      <hr /> <p>In Bitbucket or Github, it is quite easy to highligh my code using markdown syntax. But in Jekyll, it does not work in the same way. So far, I only know two ways to highligh code in Jekyll which are Pygments and Rouge. Rouge is faster and easier to install but does not support as many languages as Pygments. This post is about Pygments.</p> <h2 id="prepare">Prepare</h2> <p>Pygments is the Python syntax highlighter. Therefore,...
+      <hr /> <p>In Bitbucket or Github, it is quite easy to highligh my code using markdown syntax. But in Jekyll, it does not work in the same way. So far, I only know two ways to highligh code in Jekyll which are Pygments and Rouge. Rouge is faster and easier...
       <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/jekyll/2017/03/01/syntax-highlighter-for-jekyll.html">Read more</a>
     </div>
   
@@ -207,7 +207,7 @@
         </h5>
         <h1>Create New Services in Moodle</h1>
       </div>
-      <hr /> <h2 id="mobile-web-services">Mobile Web Services</h2> <p>In order to use mobile web services (similar to other kind of services), you need to enable it as follows:</p> <pre><code> * In Settings &gt; Site administration &gt; Plugins &gt; Web services &gt; External services * Check "Enable mobile web services" </code></pre> <p>You can see the API Documentation in <code>Settings &gt; Site administration &gt; Plugins &gt; Web services &gt; API Documentation</code></p> <h2 id="declare-new-services-functions">Declare new services functions</h2> <p>Firstly, you need...
+      <hr /> <h2 id="mobile-web-services">Mobile Web Services</h2> <p>In order to use mobile web services (similar to other kind of services), you need to enable it as follows:</p> <pre><code> * In Settings &gt; Site administration &gt; Plugins &gt; Web services &gt; External services * Check "Enable mobile web services" </code></pre> <p>You can...
       <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/moodle/2017/03/01/create-new-services-in-moodle.html">Read more</a>
     </div>
   
@@ -234,6 +234,8 @@
           </div>
         </div>
         <footer id="footer" class="mdl-mega-footer mdl-color--blue-grey-600 mdl-color-text--blue-grey-200">
+  
+  
   <div class="mdl-mega-footer__top-section">
     <div class="mdl-mega-footer__left-section">
       
@@ -317,11 +319,12 @@
  On Jekyll with <a href="https://github.com/dbtek/paper">Paper</a> theme.
     </p>
   </div>
+
 </footer>
 
       </main>
     </div>
-
+    
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
     <script src="https://mpnam.github.io/assets/jekyll-search/jekyll-search.min.js"></script>
     <script src="https://mpnam.github.io/scripts/app.js"></script>

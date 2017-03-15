@@ -17,10 +17,10 @@
   <link rel="canonical" href="https://mpnam.github.io//research/2017/03/14/dpll-algorithm.html">
   <link rel="alternate" type="application/rss+xml" title="MPNAM Site" href="https://mpnam.github.io/feed.xml" />
 
-  <script type="text/javascript" async
+  
+<script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-
 </head>
 
 
@@ -165,6 +165,8 @@
   <article>
     <p>This post is assumed that the readers have background in logic. DPLL (Davis-Putnam-Logemann-Loveland) is the basic algorithm for SAT solving.</p>
 
+<hr />
+
 <h2 id="examples">Examples</h2>
 <p>The easiest way to learn an algorithm is from example. SAT problem is checking if a boolean formula is satisfiable. Because the first step of DPLL is to convert the formula into conjunctive normal form (CNF), I will use CNF form for any formula from now. Consider the following formula <script type="math/tex">K\equiv(p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q)</script>. <script type="math/tex">K</script> is satisfiable if there exists a model <script type="math/tex">M</script> such that <script type="math/tex">M\models K</script>. In this example, <script type="math/tex">K</script> is satisfiable with model <script type="math/tex">\{p\mapsto \top, q\mapsto \top\,s\mapsto \top\}</script>.</p>
 
@@ -182,8 +184,8 @@
 <strong>(UnitPropagate):</strong> with the current assignment <script type="math/tex">M</script>, we are looking for some formula in <script type="math/tex">F</script> and <script type="math/tex">C</script> such that <script type="math/tex">M</script> only satisfies this formula if <script type="math/tex">l</script> is assigned. It looks like in Sudoku game. You may have some assumptions over some places. The other values over other places are filled based on those assumptions. <br />
 <strong>(Conflict):</strong> The current $M$ leads to conflict state where there is exists clauses such that they are unsatisfiable. <br />
 <strong>(Resolve):</strong>  Intuitively, if there is a model satisfies <script type="math/tex">(C \vee \neg l) \wedge (D \vee l)</script>, this model also satisfies <script type="math/tex">C\vee D</script>. <br />
-<strong>(Learn):</strong> We may imply new formulas after resolving step. Learn simply update new formulas into input set.
-<strong>(Backjump):</strong> Backjump to the point where we can satisfy <script type="math/tex">C</script> by new decide.
+<strong>(Learn):</strong> We may imply new formulas after resolving step. Learn simply update new formulas into input set. <br />
+<strong>(Backjump):</strong> Backjump to the point where we can satisfy <script type="math/tex">C</script> by new decide. <br />
 <strong>(Unsat):</strong> Obviously, if we unable to find an assignment to resolve conflict, it is unsatisfiable.</p>
 
 <h2 id="examples-using-dpll">Examples using DPLL</h2>
@@ -274,6 +276,8 @@
           </div>
         </div>
         <footer id="footer" class="mdl-mega-footer mdl-color--blue-grey-600 mdl-color-text--blue-grey-200">
+  
+  
   <div class="mdl-mega-footer__top-section">
     <div class="mdl-mega-footer__left-section">
       
@@ -357,11 +361,12 @@
  On Jekyll with <a href="https://github.com/dbtek/paper">Paper</a> theme.
     </p>
   </div>
+
 </footer>
 
       </main>
     </div>
-
+    
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
     <script src="https://mpnam.github.io/assets/jekyll-search/jekyll-search.min.js"></script>
     <script src="https://mpnam.github.io/scripts/app.js"></script>
