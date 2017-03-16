@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Theory of Equality",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/research/2017/03/15/theory-of-equality.html",
+      "date"     : "2017-03-15 00:00:00 +0900"
+    } ,
+  
+    {
       "title"    : "DPLL Algorithm",
       "category" : "",
       "tags"     : "",
