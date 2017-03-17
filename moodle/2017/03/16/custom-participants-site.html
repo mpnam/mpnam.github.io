@@ -6,15 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Theory of Equality</title>
-  <meta name="description" content="This post demonstrates the implementation of the satisfiability for the theory of equality where literals of the forms  and , where  and  are terms built fro...">
+  <title>Custom Your Site in Moodle</title>
+  <meta name="description" content="This post I will show different ways to customize your site. Specifically, I will use Participants View as a demonstration.">
 
   <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.teal-pink.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
   <link rel="stylesheet" href="//cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
   <link rel="stylesheet" href="https://mpnam.github.io/css/main.css">
-  <link rel="canonical" href="https://mpnam.github.io//research/2017/03/15/theory-of-equality.html">
+  <link rel="canonical" href="https://mpnam.github.io//moodle/2017/03/16/custom-participants-site.html">
   <link rel="alternate" type="application/rss+xml" title="MPNAM Site" href="https://mpnam.github.io/feed.xml" />
 
   
@@ -142,11 +142,11 @@
     <h5 class="subheader">
       
       March
-      15th,
+      16th,
       
       2017
     </h5>
-    <h1>Theory of Equality</h1>
+    <h1>Custom Your Site in Moodle</h1>
     <!-- Categories -->
     <div class="categories">
       
@@ -156,8 +156,8 @@
           
             
               <li>
-                <a href="/#Research-ref">
-                  Research
+                <a href="/#Moodle-ref">
+                  Moodle
                 </a>
               </li>
             
@@ -167,94 +167,63 @@
     </div>
   </header>
   <article>
-    <p>This post demonstrates the implementation of the satisfiability for the theory of equality where literals of the forms <script type="math/tex">X = Y</script> and <script type="math/tex">X \neq Y</script>, where <script type="math/tex">X</script> and <script type="math/tex">Y</script> are terms built from variables and applications for uninterpreted function symbols.</p>
+    <p>This post I will show different ways to customize your site. Specifically, I will use Participants View as a demonstration.</p>
 
-<hr />
+<h2 id="hide-user-fields">Hide user fields</h2>
+<p>Lets have a look inside <code>/user/index.php</code>. This is the file which ouput the page we want to customize.</p>
 
-<h2 id="preliminaries">Preliminaries</h2>
-<p>The equivalence relation is given by following axioms:</p>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span><span class="c1">// Get the hidden field list.</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">has_capability</span><span class="p">(</span><span class="s1">&#39;moodle/course:viewhiddenuserfields&#39;</span><span class="p">,</span> <span class="nv">$context</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$hiddenfields</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>  <span class="c1">// Teachers and admins are allowed to see everything.</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$hiddenfields</span> <span class="o">=</span> <span class="nb">array_flip</span><span class="p">(</span><span class="nb">explode</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="nv">$CFG</span><span class="o">-&gt;</span><span class="na">hiddenuserfields</span><span class="p">));</span>
+<span class="p">}</span>
 
-<p><strong>Reflexivity:</strong> <script type="math/tex">X = X</script> <br />
-<strong>Symmetry:</strong> <script type="math/tex">X = Y\Rightarrow Y = X</script> <br />
-<strong>Transitivity:</strong> <script type="math/tex">X = Y \wedge Y = Z\Rightarrow X = Z</script> <br />
-<strong>Congruence:</strong> For each <script type="math/tex">n-ary</script> function <script type="math/tex">f</script>, <script type="math/tex">f(s_1,...,s_n)=f(t_1,...,t_n)</script> if <script type="math/tex">s_i=t_i</script> for each <script type="math/tex">1\leq i \leq n</script>.</p>
+<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$hiddenfields</span><span class="p">[</span><span class="s1">&#39;lastaccess&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="c1">// Do not allow access since filtering.</span>
+    <span class="nv">$accesssince</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
-<p>I will use the notation <script type="math/tex">\pi(t)</script> for the set of terms of the form <script type="math/tex">f(t_1,...t_n)</script> such that for some <script type="math/tex">i, 1\leq i \leq n, t\equiv t_i</script>. Other hands, <script type="math/tex">\pi(t)</script> is the set of parents of the equivalence class rooted by <script type="math/tex">t</script>.</p>
+<p>From this, you can define which fields you want to show/hide. I recommend you to setting hidden fields in <code>Site administration / Users / Permissions / User Policies</code>. Then, you need to specify which users you want to hide these field by update roles. Since this page is for course participants page, you may want to unset capability <code>moodle/course:viewhiddenuserfields</code>. <strong>Note:</strong> for the user’s profile pages, use the capability <code>moodle/user:viewhiddendetails</code> instead.</p>
 
-<p>I will use the following example through out the post.</p>
+<h2 id="hide-some-components">Hide some components</h2>
+<p>In this section, I will give the example of how to hide user lists filter (top right corner in Boost theme).</p>
 
-<script type="math/tex; mode=display">f(a,b)=a,\ f(f(a,b),b)=c,\ g(a)\neq g(c)</script>
+<p><img src="http://mpnam.github.io//assets/img/participant_userlist.png" alt="" style="margin:0 auto;width:40%;height:40%;" /></p>
 
-<h2 id="union-find-algorithm">Union-find algorithm</h2>
-<p>This is the most basic algorithm for checking satisfiabilily. The algorithm maintains two main data structures: a mapping <script type="math/tex">F</script> on the variables in the input and a set of input disequalities <script type="math/tex">D</script>. Besides, it also maintains set of <script type="math/tex">\pi(t)</script> where <script type="math/tex">t</script> is variables appearing in the input. For the example shown above,</p>
+<p>$controlstable maintains the first row right after Participants title.</p>
 
-<p><strong>Initial:</strong> <br />
-<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto c,f(a,b)\mapsto f(a,b), f(f(a,b),b)\mapsto f(f(a,b),b), g(a)\mapsto g(a),g(c)\mapsto g(c) \}</script> <br />
-<script type="math/tex">D=\{\}</script> <br />
-<script type="math/tex">\pi(a)=\{f(a,b),g(a)\}</script> <br />
-<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
-<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
-<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span><span class="nv">$formatmenu</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span> <span class="s1">&#39;0&#39;</span> <span class="o">=&gt;</span> <span class="nx">get_string</span><span class="p">(</span><span class="s1">&#39;brief&#39;</span><span class="p">),</span>
+                     <span class="s1">&#39;1&#39;</span> <span class="o">=&gt;</span> <span class="nx">get_string</span><span class="p">(</span><span class="s1">&#39;userdetails&#39;</span><span class="p">));</span>
+<span class="nv">$select</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">single_select</span><span class="p">(</span><span class="nv">$baseurl</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="nv">$formatmenu</span><span class="p">,</span> <span class="nv">$mode</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;formatmenu&#39;</span><span class="p">);</span>
+<span class="nv">$select</span><span class="o">-&gt;</span><span class="na">set_label</span><span class="p">(</span><span class="nx">get_string</span><span class="p">(</span><span class="s1">&#39;userlist&#39;</span><span class="p">));</span>
+<span class="nv">$userlistcell</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">html_table_cell</span><span class="p">();</span>
+<span class="nv">$userlistcell</span><span class="o">-&gt;</span><span class="na">attributes</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;right&#39;</span><span class="p">;</span>
+<span class="nv">$userlistcell</span><span class="o">-&gt;</span><span class="na">text</span> <span class="o">=</span> <span class="nv">$OUTPUT</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$select</span><span class="p">);</span>
+<span class="nv">$controlstable</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">cells</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$userlistcell</span><span class="p">;</span>
 
-<p><strong>Step 1:</strong> input <script type="math/tex">f(a,b)=a</script>. After update <script type="math/tex">F</script>, we check for each pair <script type="math/tex">p_1</script> and <script type="math/tex">p_2</script> of <script type="math/tex">\pi(f(a,b))</script> and <script type="math/tex">\pi(a)</script> if <script type="math/tex">q_1\equiv q_2</script>. In this case, <script type="math/tex">f(f(a,b),b)\equiv f(a,b)</script> . Therefore, we add this to the queue of equalities to be merged.
-<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto c,f(a,b)\mapsto \color{red}{a}, f(f(a,b),b)\mapsto f(f(a,b),b), g(a)\mapsto g(a),g(c)\mapsto g(c) \}</script> <br />
-<script type="math/tex">D=\{\}</script> <br />
-<script type="math/tex">\pi(a)=\{f(a,b),g(a)\}</script> <br />
-<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
-<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
-<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+<span class="k">echo</span> <span class="nx">html_writer</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="nv">$controlstable</span><span class="p">);</span></code></pre></figure>
 
-<p><strong>Step 2:</strong> input <script type="math/tex">f(f(a,b),b)= f(a,b)</script>. Note that, the root equivalence class of <script type="math/tex">f(a,b)</script> is <script type="math/tex">a</script>. Therefore, we update <script type="math/tex">f(f(a,b),b)</script> to be <script type="math/tex">a</script>.
-<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto c,f(a,b)\mapsto a, f(f(a,b),b)\mapsto \color{red}{a}, g(a)\mapsto g(a),g(c)\mapsto g(c) \}</script> <br />
-<script type="math/tex">D=\{\}</script> <br />
-<script type="math/tex">\pi(a)=\{f(a,b),g(a)\}</script> <br />
-<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
-<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
-<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+<p>The most easiest way is remove the statement <code>$controlstable-&gt;data[0]-&gt;cells[] = $userlistcell;</code>. However, it would be very bad way to do it because other themes are also no longer show this component. I will show you how to make it more general and put your customization in your theme.  <br />
+Firstly, I will define additional render method in <code>user/renderer.php</code> as follows</p>
 
-<p><strong>Step 3:</strong> input <script type="math/tex">f(f(a,b),b)=c</script>. For optimization, instead of update <script type="math/tex">a=c</script> since <script type="math/tex">a</script> is the root of equivalence class of  <script type="math/tex">f(f(a,b),b)</script>, we update <script type="math/tex">c</script> to be <script type="math/tex">a</script>. Then, <script type="math/tex">g(a)</script> and <script type="math/tex">g(c)</script> becomes equivalence and thus add to the queue of equalities to be merged.
-<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto \color{red}{a},f(a,b)\mapsto a, f(f(a,b),b)\mapsto a, g(a)\mapsto g(a),g(c)\mapsto g(c) \}</script> <br />
-<script type="math/tex">D=\{\}</script> <br />
-<script type="math/tex">\pi(a)=\{f(a,b),g(a)\}</script> <br />
-<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
-<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
-<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span>	<span class="sd">/**</span>
+<span class="sd">     * Displays User list filter</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return string</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">user_participants_userlistfilter</span> <span class="p">(</span><span class="nv">$content</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$content</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
 
-<p><strong>Step 4:</strong> input <script type="math/tex">g(a)=g(c)</script>. <br />
-<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto a,f(a,b)\mapsto a, f(f(a,b),b)\mapsto a, g(a)\mapsto g(a),g(c)\mapsto g(c), \color{red}{g(a)=g(c)} \}</script> <br />
-<script type="math/tex">D=\{\}</script> <br />
-<script type="math/tex">\pi(a)=\{f(a,b),g(a),\color{red}{g(c)}\}</script> <br />
-<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
-<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
-<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+<p>To make it simple for the tutorial, this function only take a <code>$content</code> and return itself. The idea is, I will override this render in my theme, and decide to return ‘’. Therefore, the <code>$content</code> will no longer appear in the view. Back to the <code>/user/index.php</code>, I will modify the previous code about $controlstable$ as follows:</p>
 
-<p><strong>Step 5:</strong> input <script type="math/tex">g(a)\neq g(c)</script> =&gt; conflict due to <script type="math/tex">\color{red}{g(a)=g(c)}</script> in <script type="math/tex">F</script>. <br />
-<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto a,f(a,b)\mapsto a, f(f(a,b),b)\mapsto a, g(a)\mapsto g(a),g(c)\mapsto g(c), \color{red}{g(a)=g(c)} \}</script> <br />
-<script type="math/tex">D=\{\}</script> <br />
-<script type="math/tex">\pi(a)=\{f(a,b),g(a),g(c)\}</script> <br />
-<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
-<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
-<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span><span class="nv">$user_output</span> <span class="o">=</span> <span class="nv">$PAGE</span><span class="o">-&gt;</span><span class="na">get_renderer</span><span class="p">(</span><span class="s1">&#39;core&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">);</span>
+<span class="nv">$controlstable</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">cells</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$user_output</span><span class="o">-&gt;</span><span class="na">user_participants_userlistfilter</span><span class="p">(</span><span class="nv">$userlistcell</span><span class="p">);</span></code></pre></figure>
 
-<h2 id="e-graph">E-Graph</h2>
-<p>E-Graph is used in Simplify. It uses DAG (vertex-labeled directed oriented acyclic multigraph) to represent ground terms. In this context, ground terms are terms which do not have any quantifed variables. I will not describe in the detail E-Graph data structure in this post.</p>
+<p>Now, the content of <code>$controlstable-&gt;data[0]-&gt;cells[]</code> which shows the user lists filter, is the output of the render I have just made. If you change to body of the function <code>user_participants_userlistfilter</code> to return ‘’, you will see there is no user lists filter in the participant view. I will leave it return <code>$content</code>, by that way, other themes will work as normal.</p>
 
-<p><strong>Initial:</strong>  <br />
-<img src="http://mpnam.github.io//assets/img/e-graph1.png" alt="" style="margin:0 auto;width:30%;height:30%;" /></p>
-
-<p><strong>Step 1:</strong> input <script type="math/tex">f(a,b)=a</script> <br />
-<img src="http://mpnam.github.io//assets/img/e-graph2.png" alt="" style="margin:0 auto;width:30%;height:30%;" /></p>
-
-<p><strong>Step 2:</strong> update equivalence relation
-<img src="http://mpnam.github.io//assets/img/e-graph3.png" alt="" style="margin:0 auto;width:30%;height:30%;" /></p>
-
-<p><strong>Step 3:</strong> input <script type="math/tex">f(f(a,b),b)=c</script> <br />
-<img src="http://mpnam.github.io//assets/img/e-graph4.png" alt="" style="margin:0 auto;width:30%;height:30%;" /></p>
-
-<p><strong>Step 4:</strong> update equivalence relation
-<img src="http://mpnam.github.io//assets/img/e-graph5.png" alt="" style="margin:0 auto;width:30%;height:30%;" /></p>
-
-<p>Based on the graph above, since <script type="math/tex">g(a)</script> and <script type="math/tex">g(b)</script> are equivalence, the input <script type="math/tex">g(a)\neq g(c)</script> makes the formula is unsatisfiable.</p>
+<p>Then, I will override the function <code>user_participants_userlistfilter</code> in my theme, to make sure that it return ‘’. You could read the post <a href="">Override a Render</a> to know how to do it.</p>
 
   </article>
 
@@ -306,13 +275,13 @@
   <div class="mdl-grid pagination">
     <div class="mdl-cell mdl-cell--6-col previous">
       
-        <a class="mdl-button mdl-button--primary" href="/research/2017/03/14/dpll-algorithm.html" title="DPLL Algorithm">&larr; Previous Post</a>
+        <a class="mdl-button mdl-button--primary" href="/research/2017/03/15/theory-of-equality.html" title="Theory of Equality">&larr; Previous Post</a>
       
     </div>
 
     <div class="mdl-cell mdl-cell--6-col next">
       
-        <a class="mdl-button mdl-button--primary" href="/moodle/2017/03/16/custom-participants-site.html" title="Custom Your Site in Moodle">Next Post &rarr;</a>
+        <a class="mdl-button mdl-button--primary" disabled>Next Post &rarr;</a>
       
     </div>
   </div>
