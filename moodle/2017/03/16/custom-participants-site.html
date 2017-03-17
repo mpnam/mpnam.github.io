@@ -207,14 +207,14 @@
 <p>The most easiest way is remove the statement <code>$controlstable-&gt;data[0]-&gt;cells[] = $userlistcell;</code>. However, it would be very bad way to do it because other themes are also no longer show this component. I will show you how to make it more general and put your customization in your theme.  <br />
 Firstly, I will define additional render method in <code>user/renderer.php</code> as follows</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span>	<span class="sd">/**</span>
-<span class="sd">     * Displays User list filter</span>
-<span class="sd">     *</span>
-<span class="sd">     * @return string</span>
-<span class="sd">     */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">user_participants_userlistfilter</span> <span class="p">(</span><span class="nv">$content</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$content</span><span class="p">;</span>
-    <span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span><span class="sd">/**</span>
+<span class="sd"> * Displays User list filter</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return string</span>
+<span class="sd"> */</span>
+ <span class="k">public</span> <span class="k">function</span> <span class="nf">user_participants_userlistfilter</span> <span class="p">(</span><span class="nv">$content</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$content</span><span class="p">;</span>
+ <span class="p">}</span></code></pre></figure>
 
 <p>To make it simple for the tutorial, this function only take a <code>$content</code> and return itself. The idea is, I will override this render in my theme, and decide to return ‘’. Therefore, the <code>$content</code> will no longer appear in the view. Back to the <code>/user/index.php</code>, I will modify the previous code about $controlstable$ as follows:</p>
 
