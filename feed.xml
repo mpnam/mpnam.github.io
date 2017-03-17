@@ -4,11 +4,11 @@
     <title>MPNAM Site</title>
     <description>Welcome to my website.
 </description>
-    <lastBuildDate>Fri, 17 Mar 2017 11:25:58 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 17 Mar 2017 11:28:27 +0900</lastBuildDate>
     <link>https://mpnam.github.io//</link>
     <atom:link href="https://mpnam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 17 Mar 2017 11:25:58 +0900</pubDate>
-    <lastBuildDate>Fri, 17 Mar 2017 11:25:58 +0900</lastBuildDate>
+    <pubDate>Fri, 17 Mar 2017 11:28:27 +0900</pubDate>
+    <lastBuildDate>Fri, 17 Mar 2017 11:28:27 +0900</lastBuildDate>
     <generator>Jekyll v3.4.1</generator>
     
       <item>
@@ -69,7 +69,7 @@ Firstly, I will define additional render method in &lt;code&gt;user/renderer.php
 
 &lt;p&gt;Now, the content of &lt;code&gt;$controlstable-&amp;gt;data[0]-&amp;gt;cells[]&lt;/code&gt; which shows the user lists filter, is the output of the render I have just made. If you change to body of the function &lt;code&gt;user_participants_userlistfilter&lt;/code&gt; to return ‘’, you will see there is no user lists filter in the participant view. I will leave it return &lt;code&gt;$content&lt;/code&gt;, by that way, other themes will work as normal.&lt;/p&gt;
 
-&lt;p&gt;Then, I will override the function &lt;code&gt;user_participants_userlistfilter&lt;/code&gt; in my theme, to make sure that it return ‘’. You could read the post &lt;a href=&quot;&quot;&gt;Override a Render&lt;/a&gt; to know how to do it.&lt;/p&gt;
+&lt;p&gt;Then, I will override the function &lt;code&gt;user_participants_userlistfilter&lt;/code&gt; in my theme, to make sure that it return ‘’. You could read the post &lt;a href=&quot;https://mpnam.github.io/moodle/2017/03/15/overriding-a-renderer.html&quot;&gt;Override a Render&lt;/a&gt; to know how to do it.&lt;/p&gt;
 </description>
         <pubDate>Thu, 16 Mar 2017 00:00:00 +0900</pubDate>
         <link>https://mpnam.github.io/moodle/2017/03/16/custom-participants-site.html</link>
