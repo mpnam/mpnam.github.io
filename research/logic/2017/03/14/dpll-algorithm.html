@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="Research" property="og:site_name">
+
+  <meta content="DPLL Algorithm" property="og:title">
+
+
+  <meta content="article" property="og:type">
+
+
+  <meta content="<h1>Research</h1><h3>Some Notes on My Research!</h3>Hope you like it!" property="og:description">
+
+
+  <meta content="http://localhost:4000/logic/2017/03/14/dpll-algorithm.html" property="og:url">
+
+
+  <meta content="2017-03-14T00:00:00+09:00" property="article:published_time">
+  <meta content="http://localhost:4000/about/" property="article:author">
+
+
+  <meta property="og:image" content="">
+
+
+  
+  <meta content="Logic" property="article:section">
+  
+
+
+  
+
+  <title>DPLL Algorithm</title>
+  <meta name="description" content="This post is assumed that the readers have background in logic. DPLL (Davis-Putnam-Logemann-Loveland) is the basic algorithm for SAT solving.">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/research/css/main.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Fira+Mono' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,200,300,500,600,700,900' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Gentium+Basic:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Alegreya:400,400italic,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,300,500,700' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-hQpvDQiCJaD2H465dQfA717v7lu5qHWtDbWNPvaTJ0ID5xnPUlVXnKzq7b8YUkbN" crossorigin="anonymous">
+  <link rel="canonical" href="http://localhost:4000/research/logic/2017/03/14/dpll-algorithm.html">
+  <link rel="alternate" type="application/rss+xml" title="Research" href="http://localhost:4000/research/feed.xml">
+</head>
+
+
+  <body>
+<section>
+<nav class="navbar navbar-default navbar-fixed-top">
+
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/research/">Research</a>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+        <li><a href="/research/links/">Links</a></li>
+
+        
+
+        
+
+
+      </ul>
+
+    <!--  <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Know More!</a></li>
+
+      </ul>-->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</section>
+
+<section>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="post-title-main" itemprop="name headline">DPLL Algorithm</h1>
+      <p class="post-meta"><time datetime="2017-03-14T00:00:00+09:00" itemprop="datePublished">Mar 14, 2017</time></p>
+      
+    </div>
+
+</div>
+
+
+  <div class="post-content container" itemprop="articleBody">
+    <p>This post is assumed that the readers have background in logic. DPLL (Davis-Putnam-Logemann-Loveland) is the basic algorithm for SAT solving.</p>
+
+<hr />
+
+<h2 id="examples">Examples</h2>
+<p>The easiest way to learn an algorithm is from example. SAT problem is checking if a boolean formula is satisfiable. Because the first step of DPLL is to convert the formula into conjunctive normal form (CNF), I will use CNF form for any formula from now. Consider the following formula <script type="math/tex">K\equiv(p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q)</script>. <script type="math/tex">K</script> is satisfiable if there exists a model <script type="math/tex">M</script> such that <script type="math/tex">M\models K</script>. In this example, <script type="math/tex">K</script> is satisfiable with model <script type="math/tex">\{p\mapsto \top, q\mapsto \top\,s\mapsto \top\}</script>.</p>
+
+<p>Intuitively, to satisfy <script type="math/tex">K</script>, we need to find assignments such that satisfy <script type="math/tex">(p \vee q), (\neg p \vee q), (p\vee \neg q), (s\vee \neg p\vee q)</script> and <script type="math/tex">(\neg s\vee p \vee \neg q)</script>. Firstly, we randomly assign <script type="math/tex">p</script> to <script type="math/tex">\top</script>. With this assumption, we obviously see that <script type="math/tex">(p \vee q), (p\vee \neg q)</script> and <script type="math/tex">(\neg s\vee p \vee \neg q)</script> are satisfied. In order to satisfy <script type="math/tex">(\neg p \vee q)</script>, we need to assign <script type="math/tex">q</script> to <script type="math/tex">\top</script>. With this new assumption, we obviously see that <script type="math/tex">(s\vee \neg p\vee q)</script> is satisfied. Finally, we have already satisfy all formulas by assignments <script type="math/tex">\{p\mapsto \top, q\mapsto \top\}</script>.</p>
+
+<p>Assume that in the first step, we randomly assign <script type="math/tex">p</script> to <script type="math/tex">\bot</script>. With this assumption, we obviously see that <script type="math/tex">(\neg p \vee q)</script> and <script type="math/tex">(s\vee \neg p\vee q)</script> are satisfied. In order to satisfy <script type="math/tex">(p\vee \neg q)</script>, we need to assign <script type="math/tex">q</script> to <script type="math/tex">\bot</script>. However, we see that with the current assumptions, <script type="math/tex">(p \vee q)</script> is unsatisfiable. So we backjump to the previous assignment and assign <script type="math/tex">q</script> to <script type="math/tex">\top</script>. However, the new assumptions makes <script type="math/tex">(p \vee q)</script> is unsatisfiable. Therefore, we backjump to the assignment of <script type="math/tex">p</script>. And go on,…</p>
+
+<h2 id="abstract-dpll">Abstract DPLL</h2>
+<p>Before simulating how DPLL works over the example shown above. I would like to use the abstract version of DPLL which represented in Leonardo de Moura’s slides, <em>Summer School on Logic and Theorem Proving</em>
+<img src="https://mpnam.github.io/img/research/dpll.png" alt="Summer School on Logic and Theorem Proving - Leonardo de Moura" style="margin:0 auto;width:60%;height:60%;" /></p>
+
+<p>Each state of the procedure is a 3-tuple <script type="math/tex">\langle M,F,C \rangle</script> consisting of partial assignment <script type="math/tex">M</script>, the input clause set <script type="math/tex">F</script> and a set <script type="math/tex">C</script> of conflict clauses derived from <script type="math/tex">K</script>. I will give an intuitive explanation of each rule:</p>
+
+<p><strong>(Decide):</strong> select an literal in <script type="math/tex">F</script> which has not been assigned yet, then assign it in <script type="math/tex">M</script>. It is similar to ramdomly assignment in the example.<br />
+<strong>(UnitPropagate):</strong> with the current assignment <script type="math/tex">M</script>, we are looking for some formula in <script type="math/tex">F</script> and <script type="math/tex">C</script> such that <script type="math/tex">M</script> only satisfies this formula if <script type="math/tex">l</script> is assigned. It looks like in Sudoku game. You may have some assumptions over some places. The other values over other places are filled based on those assumptions. <br />
+<strong>(Conflict):</strong> The current $M$ leads to conflict state where there is exists clauses such that they are unsatisfiable. <br />
+<strong>(Resolve):</strong>  Intuitively, if there is a model satisfies <script type="math/tex">(C \vee \neg l) \wedge (D \vee l)</script>, this model also satisfies <script type="math/tex">C\vee D</script>. <br />
+<strong>(Learn):</strong> We may imply new formulas after resolving step. Learn simply update new formulas into input set. <br />
+<strong>(Backjump):</strong> Backjump to the point where we can satisfy <script type="math/tex">C</script> by new decide. <br />
+<strong>(Unsat):</strong> Obviously, if we unable to find an assignment to resolve conflict, it is unsatisfiable.</p>
+
+<h2 id="examples-using-dpll">Examples using DPLL</h2>
+<p>Consider the following example:</p>
+
+<script type="math/tex; mode=display">\emptyset \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q) \Rightarrow \textbf{(Decide)}</script>
+
+<script type="math/tex; mode=display">\neg p \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q) \Rightarrow \textbf{(UnitPropagate)}</script>
+
+<script type="math/tex; mode=display">\neg p, q[p \vee q] \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q) \Rightarrow \textbf{(Conflict)}</script>
+
+<script type="math/tex; mode=display">\neg p, q[p \vee q] \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q) \ ||\ (p\vee \neg q) \Rightarrow \textbf{(Resolve)}</script>
+
+<script type="math/tex; mode=display">\neg p, q[p \vee q] \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q) \ ||\ p \Rightarrow \textbf{(Learn)}</script>
+
+<script type="math/tex; mode=display">\neg p, q[p \vee q] \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q)\wedge p \ ||\ p \Rightarrow \textbf{(Backjump)}</script>
+
+<script type="math/tex; mode=display">p \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q)\wedge p \Rightarrow \textbf{(UnitPropagate)}</script>
+
+<script type="math/tex; mode=display">p, q[\neg p \vee q] \ ||\ (p \vee q)\wedge (\neg p \vee q)\wedge (p\vee \neg q)\wedge (s\vee \neg p\vee q)\wedge (\neg s\vee p \vee \neg q)\wedge p</script>
+
+<p>The algorithm stops when <script type="math/tex">M\models F</script>. In this case is <script type="math/tex">p,q</script>.</p>
+
+  </div>
+
+</article>
+
+</section>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container footer-content">
+    DevJournal Theme<br>Powered By Jekyll
+  </div>
+</nav>
+
+  </body>
+
+</html>

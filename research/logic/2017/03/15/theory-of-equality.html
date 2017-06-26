@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="Research" property="og:site_name">
+
+  <meta content="Theory of Equality" property="og:title">
+
+
+  <meta content="article" property="og:type">
+
+
+  <meta content="<h1>Research</h1><h3>Some Notes on My Research!</h3>Hope you like it!" property="og:description">
+
+
+  <meta content="http://localhost:4000/logic/2017/03/15/theory-of-equality.html" property="og:url">
+
+
+  <meta content="2017-03-15T00:00:00+09:00" property="article:published_time">
+  <meta content="http://localhost:4000/about/" property="article:author">
+
+
+  <meta property="og:image" content="">
+
+
+  
+  <meta content="Logic" property="article:section">
+  
+
+
+  
+
+  <title>Theory of Equality</title>
+  <meta name="description" content="This post demonstrates the implementation of the satisfiability for the theory of equality where literals of the forms  and , where  and  are terms built fro...">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/research/css/main.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Fira+Mono' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,200,300,500,600,700,900' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Gentium+Basic:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Alegreya:400,400italic,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,300,500,700' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-hQpvDQiCJaD2H465dQfA717v7lu5qHWtDbWNPvaTJ0ID5xnPUlVXnKzq7b8YUkbN" crossorigin="anonymous">
+  <link rel="canonical" href="http://localhost:4000/research/logic/2017/03/15/theory-of-equality.html">
+  <link rel="alternate" type="application/rss+xml" title="Research" href="http://localhost:4000/research/feed.xml">
+</head>
+
+
+  <body>
+<section>
+<nav class="navbar navbar-default navbar-fixed-top">
+
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/research/">Research</a>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+        <li><a href="/research/links/">Links</a></li>
+
+        
+
+        
+
+
+      </ul>
+
+    <!--  <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Know More!</a></li>
+
+      </ul>-->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</section>
+
+<section>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="post-title-main" itemprop="name headline">Theory of Equality</h1>
+      <p class="post-meta"><time datetime="2017-03-15T00:00:00+09:00" itemprop="datePublished">Mar 15, 2017</time></p>
+      
+    </div>
+
+</div>
+
+
+  <div class="post-content container" itemprop="articleBody">
+    <p>This post demonstrates the implementation of the satisfiability for the theory of equality where literals of the forms <script type="math/tex">X = Y</script> and <script type="math/tex">X \neq Y</script>, where <script type="math/tex">X</script> and <script type="math/tex">Y</script> are terms built from variables and applications for uninterpreted function symbols.</p>
+
+<hr />
+
+<h2 id="preliminaries">Preliminaries</h2>
+<p>The equivalence relation is given by following axioms:</p>
+
+<p><strong>Reflexivity:</strong> <script type="math/tex">X = X</script> <br />
+<strong>Symmetry:</strong> <script type="math/tex">X = Y\Rightarrow Y = X</script> <br />
+<strong>Transitivity:</strong> <script type="math/tex">X = Y \wedge Y = Z\Rightarrow X = Z</script> <br />
+<strong>Congruence:</strong> For each <script type="math/tex">n-ary</script> function <script type="math/tex">f</script>, <script type="math/tex">f(s_1,...,s_n)=f(t_1,...,t_n)</script> if <script type="math/tex">s_i=t_i</script> for each <script type="math/tex">1\leq i \leq n</script>.</p>
+
+<p>I will use the notation <script type="math/tex">\pi(t)</script> for the set of terms of the form <script type="math/tex">f(t_1,...t_n)</script> such that for some <script type="math/tex">i, 1\leq i \leq n, t\equiv t_i</script>. Other hands, <script type="math/tex">\pi(t)</script> is the set of parents of the equivalence class rooted by <script type="math/tex">t</script>.</p>
+
+<p>I will use the following example through out the post.</p>
+
+<script type="math/tex; mode=display">f(a,b)=a,\ f(f(a,b),b)=c,\ g(a)\neq g(c)</script>
+
+<h2 id="union-find-algorithm">Union-find algorithm</h2>
+<p>This is the most basic algorithm for checking satisfiabilily. The algorithm maintains two main data structures: a mapping <script type="math/tex">F</script> on the variables in the input and a set of input disequalities <script type="math/tex">D</script>. Besides, it also maintains set of <script type="math/tex">\pi(t)</script> where <script type="math/tex">t</script> is variables appearing in the input. For the example shown above,</p>
+
+<p><strong>Initial:</strong> <br />
+<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto c,f(a,b)\mapsto f(a,b), f(f(a,b),b)\mapsto f(f(a,b),b), g(a)\mapsto g(a),g(c)\mapsto g(c) \}</script> <br />
+<script type="math/tex">D=\{\}</script> <br />
+<script type="math/tex">\pi(a)=\{f(a,b),g(a)\}</script> <br />
+<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
+<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
+<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+
+<p><strong>Step 1:</strong> input <script type="math/tex">f(a,b)=a</script>. After update <script type="math/tex">F</script>, we check for each pair <script type="math/tex">p_1</script> and <script type="math/tex">p_2</script> of <script type="math/tex">\pi(f(a,b))</script> and <script type="math/tex">\pi(a)</script> if <script type="math/tex">q_1\equiv q_2</script>. In this case, <script type="math/tex">f(f(a,b),b)\equiv f(a,b)</script> . Therefore, we add this to the queue of equalities to be merged.
+<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto c,f(a,b)\mapsto \color{red}{a}, f(f(a,b),b)\mapsto f(f(a,b),b), g(a)\mapsto g(a),g(c)\mapsto g(c) \}</script> <br />
+<script type="math/tex">D=\{\}</script> <br />
+<script type="math/tex">\pi(a)=\{f(a,b),g(a)\}</script> <br />
+<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
+<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
+<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+
+<p><strong>Step 2:</strong> input <script type="math/tex">f(f(a,b),b)= f(a,b)</script>. Note that, the root equivalence class of <script type="math/tex">f(a,b)</script> is <script type="math/tex">a</script>. Therefore, we update <script type="math/tex">f(f(a,b),b)</script> to be <script type="math/tex">a</script>.
+<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto c,f(a,b)\mapsto a, f(f(a,b),b)\mapsto \color{red}{a}, g(a)\mapsto g(a),g(c)\mapsto g(c) \}</script> <br />
+<script type="math/tex">D=\{\}</script> <br />
+<script type="math/tex">\pi(a)=\{f(a,b),g(a)\}</script> <br />
+<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
+<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
+<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+
+<p><strong>Step 3:</strong> input <script type="math/tex">f(f(a,b),b)=c</script>. For optimization, instead of update <script type="math/tex">a=c</script> since <script type="math/tex">a</script> is the root of equivalence class of  <script type="math/tex">f(f(a,b),b)</script>, we update <script type="math/tex">c</script> to be <script type="math/tex">a</script>. Then, <script type="math/tex">g(a)</script> and <script type="math/tex">g(c)</script> becomes equivalence and thus add to the queue of equalities to be merged.
+<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto \color{red}{a},f(a,b)\mapsto a, f(f(a,b),b)\mapsto a, g(a)\mapsto g(a),g(c)\mapsto g(c) \}</script> <br />
+<script type="math/tex">D=\{\}</script> <br />
+<script type="math/tex">\pi(a)=\{f(a,b),g(a)\}</script> <br />
+<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
+<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
+<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+
+<p><strong>Step 4:</strong> input <script type="math/tex">g(a)=g(c)</script>. <br />
+<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto a,f(a,b)\mapsto a, f(f(a,b),b)\mapsto a, g(a)\mapsto g(a),g(c)\mapsto g(c), \color{red}{g(a)=g(c)} \}</script> <br />
+<script type="math/tex">D=\{\}</script> <br />
+<script type="math/tex">\pi(a)=\{f(a,b),g(a),\color{red}{g(c)}\}</script> <br />
+<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
+<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
+<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+
+<p><strong>Step 5:</strong> input <script type="math/tex">g(a)\neq g(c)</script> =&gt; conflict due to <script type="math/tex">\color{red}{g(a)=g(c)}</script> in <script type="math/tex">F</script>. <br />
+<script type="math/tex">F=\{a\mapsto a, b\mapsto b, c\mapsto a,f(a,b)\mapsto a, f(f(a,b),b)\mapsto a, g(a)\mapsto g(a),g(c)\mapsto g(c), \color{red}{g(a)=g(c)} \}</script> <br />
+<script type="math/tex">D=\{\}</script> <br />
+<script type="math/tex">\pi(a)=\{f(a,b),g(a),g(c)\}</script> <br />
+<script type="math/tex">\pi(b)=\{f(a,b),f(f(a,b),b)\}</script> <br />
+<script type="math/tex">\pi(c)=\{g(c)\}</script> <br />
+<script type="math/tex">\pi(f(a,b))=\{f(f(a,b),b)\}</script></p>
+
+<h2 id="e-graph">E-Graph</h2>
+<p>E-Graph is used in Simplify. It uses DAG (vertex-labeled directed oriented acyclic multigraph) to represent ground terms. In this context, ground terms are terms which do not have any quantifed variables. I will not describe in the detail E-Graph data structure in this post.</p>
+
+<p><strong>Initial:</strong>  <br />
+<img src="http://mpnam.github.io/img/research/e-graph1.png" alt="" style="margin:0 auto;width:30%;height:30%;" /></p>
+
+<p><strong>Step 1:</strong> input <script type="math/tex">f(a,b)=a</script> <br />
+<img src="http://mpnam.github.io/img/e-graph2.png" alt="" style="margin:0 auto;width:30%;height:30%;" /></p>
+
+<p><strong>Step 2:</strong> update equivalence relation
+<img src="http://mpnam.github.io/img/research/e-graph3.png" alt="" style="margin:0 auto;width:30%;height:30%;" /></p>
+
+<p><strong>Step 3:</strong> input <script type="math/tex">f(f(a,b),b)=c</script> <br />
+<img src="http://mpnam.github.io/img/research/e-graph4.png" alt="" style="margin:0 auto;width:30%;height:30%;" /></p>
+
+<p><strong>Step 4:</strong> update equivalence relation
+<img src="http://mpnam.github.io/img/research/e-graph5.png" alt="" style="margin:0 auto;width:30%;height:30%;" /></p>
+
+<p>Based on the graph above, since <script type="math/tex">g(a)</script> and <script type="math/tex">g(b)</script> are equivalence, the input <script type="math/tex">g(a)\neq g(c)</script> makes the formula is unsatisfiable.</p>
+
+  </div>
+
+</article>
+
+</section>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container footer-content">
+    DevJournal Theme<br>Powered By Jekyll
+  </div>
+</nav>
+
+  </body>
+
+</html>
