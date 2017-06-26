@@ -1,339 +1,612 @@
-<!DOCTYPE html>
-<html>
 
-  <head>
+<!-- Index Layout Start -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<!-- HEAD Start -->
+
+<head>
+  
+
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Blog and website of Nam Mai.">
+  <meta name="author" content="Nam Mai">
+  <meta name="keywords" content="mpnam, personal, jekyll">
+  <link rel="canonical" href="/">
+  <title>{ Namu's Blog }</title>
 
-  <title>MPNAM Site</title>
-  <meta name="description" content="Welcome to my website.
-">
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.teal-pink.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-  <link rel="stylesheet" href="//cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
-  <link rel="stylesheet" href="https://mpnam.github.io/css/main.css">
-  <link rel="canonical" href="https://mpnam.github.io//">
-  <link rel="alternate" type="application/rss+xml" title="MPNAM Site" href="https://mpnam.github.io/feed.xml" />
+  <!-- Custom CSS -->
+  <link href="/css/grayscale.css" rel="stylesheet">
+  
+  <link href="/css/timeline.css" rel="stylesheet">
+  
+
+  <!-- Custom Fonts -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/rrssb.css" />
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  
 
   
-<script type="text/javascript"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+
+  
+
+
+  <!-- iOS Web App mode -->
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" sizes="36x36" href="/img/web-app/icon-36p.png">
+  <link rel="apple-touch-icon" sizes="48x48" href="/img/web-app/icon-48p.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/web-app/icon-72p.png">
+  <link rel="apple-touch-icon" sizes="96x96" href="/img/web-app/icon-96p.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/web-app/icon-144p.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="/img/web-app/icon-192p.png">
+
+  <!-- Android Web App mode -->
+
+  <link rel="manifest" href="/manifest.json">
+
+
+
+
+  
+<!-- Chrome, Firefox OS and Opera -->
+<meta name="theme-color" content="#000000">
+<!-- Windows Phone -->
+<meta name="msapplication-navbutton-color" content="#000000">
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+
+  
+
+
+
 </head>
 
+<!-- HEAD End -->
 
-  <body>
-    <div class="paper-layout mdl-layout mdl-js-layout">
-      <header id="toolbar" class="paper-layout-header mdl-layout__header mdl-layout__header--waterfall">
-  <!-- Top row, always visible -->
-  <div class="mdl-layout__header-row">
-    <!-- Title -->
-    <span class="mdl-layout-title">MPNAM Site</span>
-    <div class="mdl-layout-spacer"></div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                mdl-textfield--floating-label mdl-textfield--align-right">
-      <label class="mdl-button mdl-js-button mdl-button--icon"
-             for="search-input">
-        <i class="material-icons">search</i>
-      </label>
-      <div class="mdl-textfield__expandable-holder">
-        <input class="mdl-textfield__input" type="text" name="sample"
-               id="search-input" />
-      </div>
+
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top"  data-offset="151">
+
+    
+<!-- Navigation Start -->
+
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+        <i class="fa fa-bars"></i>
+      </button>
+      
+        <a class="navbar-brand page-scroll" href="#page-top">
+      
+          <div>
+            
+              <img src="/img/black-favicon.png" alt="">
+            
+            { Namu's Blog }
+          </div>
+        </a>
     </div>
-    <ul id="search-results">
-      <li class="mdl-menu__item" disabled>Search results</li>
-    </ul>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+      <ul class="nav navbar-nav">
+        
+
+          <!-- Scroll to section for each page in index -->
+          
+            <li>
+              <a class="page-scroll" href="#about"> About </a>
+            </li>
+          
+            <li>
+              <a class="page-scroll" href="#timeline"> Timeline </a>
+            </li>
+          
+            <li>
+              <a class="page-scroll" href="#contact"> Contact </a>
+            </li>
+          
+
+        
+      </ul>
+    </div>
   </div>
+</nav>
 
-  <!-- Bottom row, not visible on scroll -->
-  <div class="mdl-layout__header-row">
-    <div class="paper-avatar">
-      <img src="/assets/img/avatar.png"/>
+<!-- Navigation End -->
+
+
+    
+<!-- Intro Start -->
+
+<header class="intro">
+  <div class="intro-body">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <h1 class="brand-heading">&nbsp;</h1>
+            <h1 class="brand-heading">&nbsp;</h1>
+            <span class="intro-text"><!--
+If you want to have a static message in your intro layout, disable the dynamic-typing in the _config.yml and write here your text
+-->
+</span>
+            <h5>&nbsp;</h5>
+            <a href="#about" class="page-scroll">
+              
+                <img class="img-me" src="/img/avatar.png" alt="">
+              
+            </a>
+          </div>
+        </div>
     </div>
-    <div class="mdl-layout-spacer"></div>
-    <!-- Navigation -->
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="/">Home</a>
-      
-        
-          <a class="mdl-navigation__link" href="https://mpnam.github.io/about.html">About</a>
-        
-      
-        
-      
-        
-          <a class="mdl-navigation__link" href="https://mpnam.github.io/categories.html">Categories</a>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </nav>
   </div>
 </header>
 
+<!-- Intro End -->
 
-<div class="paper-drawer mdl-layout__drawer mdl-color--blue-500">
-  <header class="paper-drawer-header">
-    <img class="avatar" src="/assets/img/avatar.png"/>
-    <span class="paper-drawer-title">MPNAM Site</span>
-  </header>
 
-  <nav class="paper-navigation mdl-navigation mdl-color--grey-200 mdl-color-text--grey-600">
-    <a class="mdl-navigation__link" href="/https://mpnam.github.io">
-      <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
-      Home
-    </a>
     
       
-      <a class="mdl-navigation__link" href="https://mpnam.github.io/about.html">
         
-          <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">info_outline</i>
+      
         
-        About
-      </a>
-      
-    
-      
-    
-      
-      <a class="mdl-navigation__link" href="https://mpnam.github.io/categories.html">
-        
-          <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">folder</i>
-        
-        Categories
-      </a>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    <div class="mdl-layout-spacer"></div>
-    <a class="mdl-navigation__link" href="https://github.com/dbtek/paper">
-      <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i>
-      On Jekyll with Paper Theme
-    </a>
-  </nav>
-</div>
+          
+<!-- About Start -->
 
+<section id="about" class="container content-section text-center">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h2 id="about">About</h2>
 
-      <main class="mdl-layout__content">
-        <div id="container" class="paper-container">
-          <div class="paper-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell">
-            <div class="paper-home">
-  
-    <div class="post">
-      <div class="header">
-        <h5 class="subheader">
-          
-          March
-          16th,
-          
-          2017
-        </h5>
-        <h1>Custom Your Site in Moodle</h1>
-      </div>
-      <p>This post I will show different ways to customize your site. Specifically, I will use Participants View as a demonstration.</p> <h2 id="hide-user-fields">Hide user fields</h2> <p>Lets have a look inside <code>/user/index.php</code>. This is the file which ouput the page we want to customize.</p> <figure class="highlight"><pre><code class="language-php" data-lang="php"><span></span><span class="c1">// Get the hidden...
-      <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/moodle/2017/03/16/custom-participants-site.html">Read more</a>
-    </div>
-  
-    <div class="post">
-      <div class="header">
-        <h5 class="subheader">
-          
-          March
-          15th,
-          
-          2017
-        </h5>
-        <h1>Theory of Equality</h1>
-      </div>
-      <p>This post demonstrates the implementation of the satisfiability for the theory of equality where literals of the forms <script type="math/tex">X = Y</script> and <script type="math/tex">X \neq Y</script>, where <script type="math/tex">X</script> and <script type="math/tex">Y</script> are terms built from variables and applications for uninterpreted function symbols.</p> <hr /> <h2 id="preliminaries">Preliminaries</h2> <p>The equivalence...
-      <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/research/2017/03/15/theory-of-equality.html">Read more</a>
-    </div>
-  
-    <div class="post">
-      <div class="header">
-        <h5 class="subheader">
-          
-          March
-          15th,
-          
-          2017
-        </h5>
-        <h1>Overriding a Renderer</h1>
-      </div>
-      <p>One way to customize specific page in your theme is to override a renderer. This post will show you an example of how to do this.</p> <hr /> <h2 id="overall">Overall</h2> <p>The following diagram from Moodle docs gives the overall picture of how render works:</p> <p><img src="https://docs.moodle.org/dev/images_dev/1/12/uml_output_renderers.png" alt="" style="margin:0 auto;width:80%;height:80%;" /></p>...
-      <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/moodle/2017/03/15/overriding-a-renderer.html">Read more</a>
-    </div>
-  
-    <div class="post">
-      <div class="header">
-        <h5 class="subheader">
-          
-          March
-          14th,
-          
-          2017
-        </h5>
-        <h1>DPLL Algorithm</h1>
-      </div>
-      <p>This post is assumed that the readers have background in logic. DPLL (Davis-Putnam-Logemann-Loveland) is the basic algorithm for SAT solving.</p> <hr /> <h2 id="examples">Examples</h2> <p>The easiest way to learn an algorithm is from example. SAT problem is checking if a boolean formula is satisfiable. Because the first step of DPLL...
-      <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/research/2017/03/14/dpll-algorithm.html">Read more</a>
-    </div>
-  
-    <div class="post">
-      <div class="header">
-        <h5 class="subheader">
-          
-          March
-          11th,
-          
-          2017
-        </h5>
-        <h1>Event Observers in Moodle</h1>
-      </div>
-      <p>It is essential to support such thing likes event observers in any framework. In this post, I will show how to defined your observers in Moodle.</p> <hr /> <h2 id="events">Events</h2> <p>In Moodle, when an action takes place, an event is created by a core API or plugin. For example, core...
-      <a class="mdl-button mdl-button--accent" href="https://mpnam.github.io/moodle/2017/03/11/event-observers-in-moodle.html">Read more</a>
-    </div>
-  
+<p>I am a Ph.D. student at JAIST. Besides, I am also a software engineering at VMobile and Vietec Corp.
+Besides research, I love programming (C#, Java, Ocaml, Javascript, PHP). My favourite languages are C# and Javascript.
+I also play guitar and photography in my free time.</p>
 
-  <div class="mdl-grid pagination">
-    <div class="mdl-cell mdl-cell--4-col previous">
-      
-        <a class="mdl-button mdl-button--primary" disabled>&larr; Newer</a>
-      
-    </div>
+<p><small>
+Recently, I and my friends have just launched an open source project named <code class="highlighter-rouge">jaist-mobile</code>. Its purpose is to improve the mobile experience of students who study in Jaist.
+</small></p>
 
-    <div class="mdl-cell mdl-cell--4-col indicator subheader">
-      Page 1 / 2
-    </div>
+<p>Support the repo by starring or forking it! Especically if you are living in Jaist :-)</p>
 
-    <div class="mdl-cell mdl-cell--4-col next">
-      
-        <a class="mdl-button mdl-button--primary" href="https://mpnam.github.io/page/2">Older &rarr;</a>
-      
+<iframe src="https://ghbtns.com/github-btn.html?user=mpnam&amp;repo=jaist-mobile&amp;type=star&amp;count=true&amp;size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
+<iframe src="https://ghbtns.com/github-btn.html?user=mpnam&amp;repo=jaist-mobile&amp;type=fork&amp;count=true&amp;size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
     </div>
   </div>
-</div>
+</section>
 
+<!-- About End -->
+
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+<!-- Timeline Start -->
+
+<section id="timeline" class="container content-section text-center">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+      <h2 id="timeline">Timeline</h2>
+
+
+      <ul class="timeline">
+
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/hcmut.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>2009 - 2014</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Bachelor of Engineering in Computer Science, HCMUT, Honor program.</p>
+
+              </div>
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/vietec.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>2011 - December 2016</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Software Development Manager at Vietec.</p>
+
+              </div>
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/jaist.jpg" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>2014 - March 2016</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Master of Science in Information Science, JAIST, Japan.</p>
+
+              </div>
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+            timeline-inverted
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/vmobile.png" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>December 2016 - Today</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Full-stack developer at VMobile.</p>
+
+              </div>
+            </div>
+          </li>
+        
+          
+          
+
+          <li class="
+          
+          ">
+            <div class="timeline-image">
+              <img class="img-circle img-responsive" src="/img/timeline/married.jpg" alt="">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <h4>January 2016 - Til I die</h4>
+              </div>
+              <div class="timeline-body">
+                <p>Married!!!</p>
+
+              </div>
+            </div>
+          </li>
+        
+
+        <li class="timeline-inverted">
+          <div class="timeline-image">
+            <img class="img-circle img-responsive" src="/img/timeline/default.jpg" alt="">
           </div>
-        </div>
-        <footer id="footer" class="mdl-mega-footer mdl-color--blue-grey-600 mdl-color-text--blue-grey-200">
-  
-  
-  <div class="mdl-mega-footer__top-section">
-    <div class="mdl-mega-footer__left-section">
-      
-      <a id="github" class="mdl-button mdl-js-button mdl-button--icon mdl-button--accent" href="https://github.com/mpnam">
-        <span class="icon">
-          <svg viewBox="0 0 16 16">
-            <path style="fill: #FBCEAD" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
-          </svg>
-        </span>
-      </a>
-      <div class="mdl-tooltip" for="github">
-        Github profile
-      </div>
-      
-    </div>
-    <div class="mdl-mega-footer__right-section">
-
+        </li>
+      </ul>
     </div>
   </div>
-  <div class="mdl-mega-footer__middle-section">
-    <div class="mdl-mega-footer__drop-down-section">
-      <h1 class="mdl-mega-footer__heading">Pages</h1>
-      <ul class="mdl-mega-footer__link-list">
+</section>
+
+<!-- Timeline End -->
+
+        
+      
+        
+      
+        
+      
+    
+      
+        
+      
+        
+      
         
           
-            <li>
-              <a href="https://mpnam.github.io//about.html">About</a>
-            </li>
-          
-      
-          
-      
-          
-            <li>
-              <a href="https://mpnam.github.io//categories.html">Categories</a>
-            </li>
-          
-      
-          
-      
-          
-      
-          
-      
-          
-      
-          
-      
-      </ul>
-    </div>
-    <div class="mdl-mega-footer__drop-down-section">
-      <h1 class="mdl-mega-footer__heading">Categories</h1>
-      <ul class="mdl-mega-footer__link-list">
-          
-            
-              
-                <li>
-                  <a href="https://mpnam.github.io/categories.html#Moodle">
-                      Moodle
-                  </a>
-                </li>
-              
-                <li>
-                  <a href="https://mpnam.github.io/categories.html#Jekyll">
-                      Jekyll
-                  </a>
-                </li>
-              
-                <li>
-                  <a href="https://mpnam.github.io/categories.html#Research">
-                      Research
-                  </a>
-                </li>
-              
-            
-            
-      </ul>
-    </div>
-  </div>
-  <div class="mdl-mega-footer__bottom-section">
-    <p>
-      Welcome to my website.
- On Jekyll with <a href="https://github.com/dbtek/paper">Paper</a> theme.
-    </p>
-  </div>
+<!-- Contact Start -->
 
+<section id="contact" class="container content-section text-center">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+      <h2 id="contact">Contact</h2>
+
+<p>Feel free to contact me!</p>
+
+
+      
+        
+          
+            <p>
+            <script>
+              function join_at_email(user, domain){
+              return (user && domain)?(user + "@" + domain):"";
+              }
+              document.write('<a href="mailto:'
+              + join_at_email( "mpnam1991", "gmail.com" )
+              + '">'
+              + join_at_email( "mpnam1991", "gmail.com" )
+              + '</a>'
+              );
+              </script>
+            </p>
+        
+      
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact End -->
+
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <!-- Footer Start -->
+
+<footer>
+
+    <!-- Social Buttons Start -->
+
+<ul class="list-inline social-buttons">
+    
+    <li><a href="https://facebook.com/phuong.nam.781991" target="_blank"><i class="fa fa-facebook fa-fw"></i></a></li>
+    
+    <li><a href="https://github.com/mpnam" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>
+    
+    <li><a href="/feed.xml" target="_blank"><i class="fa fa-rss fa-fw"></i></a></li>
+    
+    
+</ul>
+
+<!-- Social Buttons End -->
+
+
+    <p><br><br></p>
+
+    <div class="container text-center">
+        <p>Copyright &copy; Nam Mai 2017</p>
+        
+    </div>
 </footer>
 
-      </main>
-    </div>
-    
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
-    <script src="https://mpnam.github.io/assets/jekyll-search/jekyll-search.min.js"></script>
-    <script src="https://mpnam.github.io/scripts/app.js"></script>
-  </body>
+<p><br><br><br><br><br><br></p>
 
+<!-- Footer End -->
+
+
+    
+<!-- Javascript Start -->
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<!--* Start Bootstrap - Grayscale Bootstrap Theme (http://startbootstrap.com)
+* Code licensed under the Apache License v2.0.
+* For details, see http://www.apache.org/licenses/LICENSE-2.0.-->
+<script>
+function toggleNavCollapse(){50<$(".navbar").offset().top?$(".navbar-fixed-top").addClass("top-nav-collapse"):$(".navbar-fixed-top").removeClass("top-nav-collapse");}
+$(document).ready(toggleNavCollapse);
+$(window).scroll(toggleNavCollapse);$(function(){$("a.page-scroll").bind("click",function(b){var a=$(this);$("html, body").stop().animate({scrollTop:$(a.attr("href")).offset().top-50},1500,"easeInOutExpo",function(){a.blur()});b.preventDefault()})});$(".navbar-collapse ul li a").click(function(){$(".navbar-toggle:visible").click()});
+</script>
+
+
+
+  <!-- Collapse navbar when navbar-brand is clicked -->
+
+  <script>
+  $(function(){$(".navbar-brand").click(function(){$(".collapse.in")&&$(".collapse.in").animate({height:"1px"},500,function(){$(".collapse.in").removeClass("in")})})});
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Dynamic Typing Start -->
+
+  <script type="text/javascript" src="/js/typed.min.js"></script>
+  <script type="text/javascript">
+
+  var myQuotes =  new Array();
+  
+    myQuotes.push("'Taking jobs to build up your resume is the same as saving up sex for old age.' - Warren Buffett.");
+  
+    myQuotes.push("Thở vào tâm tĩnh lặng. Thở ra miệng mỉm cười. An trú trong hiện tại. Giây phút đẹp tuyệt vời.");
+  
+
+  function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex ;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
+  
+    shuffle(myQuotes)
+  
+
+    $(".intro-text").typed({
+      strings: myQuotes,
+      typeSpeed: 10,
+      backDelay: 5000,
+      startDelay: 200,
+      loop: true,
+      loopCount: false,
+      cursorChar: "|"
+    });
+  </script>
+
+  <!-- Dynamic Typing End  -->
+
+
+
+<script>
+function addTohistory() {
+  if (!window.location.host.startsWith("127.0.0.1")) {
+    history.pushState({}, '', 'http://localhost:4000/');
+  }
+}
+</script>
+
+<!-- Gesture Navigation / Swipe Instruction Start -->
+
+
+  
+
+  
+
+  
+
+  
+
+<!-- Gesture Navigation / Swipe Instruction End -->
+
+
+
+<!-- Javascript End -->
+
+
+  </body>
 </html>
+
+<!-- Index Layout End -->
