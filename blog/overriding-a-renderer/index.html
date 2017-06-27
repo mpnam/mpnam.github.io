@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Overriding a Renderer</title>
-    <meta name="description" content="Customize a page in Moodle by overriding a renderer.">
+    <meta name="description" content="One way to customize specific page in your theme is to override a renderer. This post will show you an example of how to do this.">
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="https://mpnam.github.io/blog/overriding-a-renderer/">
@@ -14,7 +14,7 @@
     
     <meta property="og:image" content="https://mpnam.github.io/blog/assets/img/blog-image.png">
     
-    <meta property="og:description" content="Customize a page in Moodle by overriding a renderer.">
+    <meta property="og:description" content="One way to customize specific page in your theme is to override a renderer. This post will show you an example of how to do this.">
     <meta property="og:site_name" content="Nam Mai - Full stack developer">
 
     <!-- Favicon -->
@@ -100,25 +100,21 @@
             <time itemprop="datePublished" datetime="2017-03-16T00:00:00+09:00" class="date">16 Mar 2017</time>
         
         <h1 class="post-title" itemprop="name">Overriding a Renderer</h1>
-        <p itemprop="description" class="subtitle">Customize a page in Moodle by overriding a renderer.</p>
+        <p itemprop="description" class="subtitle">One way to customize specific page in your theme is to override a renderer. This post will show you an example of how to do this.</p>
     </div>
 </header>
         <section class="post">
 
             <article role="article" id="post" class="post-content" itemprop="articleBody">
-                <p>One way to customize specific page in your theme is to override a renderer. This post will show you an example of how to do this.</p>
+                <h2 id="overall">Overall</h2>
 
-<hr />
+<p>The following diagram from Moodle’s docs gives the overall picture of how render works:</p>
 
-<h2 id="overall">Overall</h2>
+<p><img src="https://docs.moodle.org/dev/images_dev/1/12/uml_output_renderers.png" alt="" style="margin:0 auto;width:100%;height:100%;" /></p>
 
-<p>The following diagram from Moodle docs gives the overall picture of how render works:</p>
+<p>For better understanding, you may want to take a look inside <code class="highlighter-rouge">lib\outputrenderer.php</code> where <code class="highlighter-rouge">renderer_base</code> class is defined. Then check some renderer classes of some plugins, or core modules to see how it works.</p>
 
-<p><img src="https://docs.moodle.org/dev/images_dev/1/12/uml_output_renderers.png" alt="" style="margin:0 auto;width:80%;height:80%;" /></p>
-
-<p>To understand better, you may want to take a look inside <code class="highlighter-rouge">lib\outputrenderer.php</code> where <code class="highlighter-rouge">renderer_base</code> class is defined. And check some renderer class of some plugins, or core modules to see how it works.</p>
-
-<p>Any <code class="highlighter-rouge">core_renderer</code> is available through the global <code class="highlighter-rouge">$OUTPUT</code> variable. For <code class="highlighter-rouge">plugin_renderer</code>, you could get them by <code class="highlighter-rouge">$PAGE-&gt;get_renderer('plugin_name')</code>.</p>
+<p>Any <code class="highlighter-rouge">core_renderer</code> is available through the global <code class="highlighter-rouge">$OUTPUT</code> variable. For <code class="highlighter-rouge">plugin_renderer</code>, you can get them by <code class="highlighter-rouge">$PAGE-&gt;get_renderer('plugin_name')</code>.</p>
 
 <h2 id="override-a-renderer">Override a Renderer</h2>
 
@@ -167,31 +163,14 @@
 
             </article>
 
-            <section class="share">
-    <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20https://mpnam.github.io/overriding-a-renderer/%20via%20&#64;&hashtags=moodle,ui,tutorial,"
-    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
-        <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
-    </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=https://mpnam.github.io/overriding-a-renderer/"
-    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
-        <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
-    </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=https://mpnam.github.io/overriding-a-renderer/"
-    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
-        <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
-    </a>
-</section>
             <section class="author" itemprop="author">
     <div class="details" itemscope itemtype="http://schema.org/Person">
         <img itemprop="image" class="img-rounded" src="/blog/assets/img/blog-author.jpg" alt="">
         <p class="def">Author</p>
         <h3 class="name">
-            <a itemprop="name" href="https://plus.google.com/+/posts">Namu</a>
+            <a itemprop="name" href="https://mpnam.github.io">Namu</a>
         </h3>
         <p class="desc">Full stack developer at VMobile</p>
-        <p><a itemprop="email" class="email" href="mailto:mpnam1991@gmail.com">mpnam1991@gmail.com</a></p>
-        <p><a itemprop="github" class="github" href="https://github.com/mpnam">github.com/mpnam</a></p>
     </div>
 </section>
 

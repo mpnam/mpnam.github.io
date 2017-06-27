@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Event Observers in Moodle</title>
-    <meta name="description" content="How to observe an event in Moodle.">
+    <meta name="description" content="It is essential to support such thing likes event observers in any framework. In this post, I will show how to defined your observers in Moodle.">
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="https://mpnam.github.io/blog/event-observers-in-moodle/">
@@ -14,7 +14,7 @@
     
     <meta property="og:image" content="https://mpnam.github.io/blog/assets/img/blog-image.png">
     
-    <meta property="og:description" content="How to observe an event in Moodle.">
+    <meta property="og:description" content="It is essential to support such thing likes event observers in any framework. In this post, I will show how to defined your observers in Moodle.">
     <meta property="og:site_name" content="Nam Mai - Full stack developer">
 
     <!-- Favicon -->
@@ -100,25 +100,23 @@
             <time itemprop="datePublished" datetime="2017-03-11T00:00:00+09:00" class="date">11 Mar 2017</time>
         
         <h1 class="post-title" itemprop="name">Event Observers in Moodle</h1>
-        <p itemprop="description" class="subtitle">How to observe an event in Moodle.</p>
+        <p itemprop="description" class="subtitle">It is essential to support such thing likes event observers in any framework. In this post, I will show how to defined your observers in Moodle.</p>
     </div>
 </header>
         <section class="post">
 
             <article role="article" id="post" class="post-content" itemprop="articleBody">
-                <p>It is essential to support such thing likes event observers in any framework. In this post, I will show how to defined your observers in Moodle.</p>
+                <h2 id="events">Events</h2>
 
-<hr />
+<p>In Moodle, when an action takes place, an event is created by a core API or plugin. For example, core API events are stored in <code class="highlighter-rouge">/lib/classes/event</code>. All events must be extended from abstact class <strong>base</strong>. In order to trigger an event <code class="highlighter-rouge">$event</code>, you simply executing <code class="highlighter-rouge">$event-&gt;trigger()</code>. For example, the following codes is to trigger the event of adding new blog post.</p>
 
-<h2 id="events">Events</h2>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
-<p>In Moodle, when an action takes place, an event is created by a core API or plugin. For example, core API events are stored in <code class="highlighter-rouge">/lib/classes/event</code>. All events must be extended from abstact class <strong>base</strong>. In order to trigger an event <code class="highlighter-rouge">$event</code>, you simply executing <code class="highlighter-rouge">$event-&gt;trigger()</code>. For example, the following codes is for trigger the event of adding new blog post.</p>
-
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$eventparms = array('context' =&gt; $context,
-                'objectid' =&gt; $newexternal-&gt;id,
-                'other' =&gt; array('url' =&gt; $newexternal-&gt;url));
-$event = \core\event\blog_external_added::create($eventparms);
-$event-&gt;trigger();</code></pre></figure>
+<span class="nv">$eventparms</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'context'</span> <span class="o">=&gt;</span> <span class="nv">$context</span><span class="p">,</span>
+                <span class="s1">'objectid'</span> <span class="o">=&gt;</span> <span class="nv">$newexternal</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+                <span class="s1">'other'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'url'</span> <span class="o">=&gt;</span> <span class="nv">$newexternal</span><span class="o">-&gt;</span><span class="na">url</span><span class="p">));</span>
+<span class="nv">$event</span> <span class="o">=</span> <span class="nx">\core\event\blog_external_added</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$eventparms</span><span class="p">);</span>
+<span class="nv">$event</span><span class="o">-&gt;</span><span class="na">trigger</span><span class="p">();</span></code></pre></figure>
 
 <h2 id="observers">Observers</h2>
 
@@ -132,52 +130,58 @@ $event-&gt;trigger();</code></pre></figure>
 </code></pre>
 </div>
 
-<p>In this post, I am going to define my two new observers to observe events blog_entry_created and comment_created.</p>
+<p>In this post, I am going to define my two new observers to observe events <code class="highlighter-rouge">blog_entry_created</code> and <code class="highlighter-rouge">comment_created</code>.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$observers = array(
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
-    array(
-        'eventname'   =&gt; '\core\event\blog_entry_created',
-	    'includefile' =&gt; '/blog/classes/observer.php',
-        'callback'    =&gt; 'core_blog_observer::observe_blog_created',
-    ),
+<span class="nv">$observers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
 
-    array(
-        'eventname'   =&gt; '\core\event\comment_created',
-	    'includefile' =&gt; '/comment/classes/observer.php',
-        'callback'    =&gt; 'core_comment_observer::observe_comment_created',
-    ),
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'eventname'</span>   <span class="o">=&gt;</span> <span class="s1">'\core\event\blog_entry_created'</span><span class="p">,</span>
+	    <span class="s1">'includefile'</span> <span class="o">=&gt;</span> <span class="s1">'/blog/classes/observer.php'</span><span class="p">,</span>
+        <span class="s1">'callback'</span>    <span class="o">=&gt;</span> <span class="s1">'core_blog_observer::observe_blog_created'</span><span class="p">,</span>
+    <span class="p">),</span>
 
-);</code></pre></figure>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'eventname'</span>   <span class="o">=&gt;</span> <span class="s1">'\core\event\comment_created'</span><span class="p">,</span>
+	    <span class="s1">'includefile'</span> <span class="o">=&gt;</span> <span class="s1">'/comment/classes/observer.php'</span><span class="p">,</span>
+        <span class="s1">'callback'</span>    <span class="o">=&gt;</span> <span class="s1">'core_comment_observer::observe_comment_created'</span><span class="p">,</span>
+    <span class="p">),</span>
+
+<span class="p">);</span></code></pre></figure>
 
 <p><strong>Note:</strong> You need to upgrade Moodle site (increment your version.php) to apply these changes.</p>
 
 <p>As in the example shown above, I need to define my observer named <code class="highlighter-rouge">observe_blog_created</code> in class <code class="highlighter-rouge">core_blog_observer</code> stored in <code class="highlighter-rouge">/blog/classes/observer.php</code>.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">/**
- * Event observer for blog.
- */
-class core_blog_observer {
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
-    /**
+<span class="sd">/**
+ * Event observer for blog.
+ */</span>
+<span class="k">class</span> <span class="nc">core_blog_observer</span> <span class="p">{</span>
+
+    <span class="sd">/**
      * Triggered when 'blog_entry_updated' event is triggered.
      *
      * @param \core\event\blog_entry_updated $event
-     */
-    public static function observe_blog_updated(\core\event\blog_entry_updated $event) {
-        //@todo
-    }
+     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">observe_blog_updated</span><span class="p">(</span><span class="nx">\core\event\blog_entry_updated</span> <span class="nv">$event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//@todo
+</span>    <span class="p">}</span>
 
-}</code></pre></figure>
+<span class="p">}</span></code></pre></figure>
 
 <h2 id="properties">Properties</h2>
 
 <p>In order to create the instance of an event, there are some properties you need to pass. You could check it in <a href="https://docs.moodle.org/dev/Event_2#What_are_events.3F">Moodle’s documentation</a>. Besides, you can look directly into <strong>base</strong> class in <code class="highlighter-rouge">/lib/db/event/base.php</code></p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">private static $fields = array(
-        'eventname', 'component', 'action', 'target', 'objecttable', 'objectid', 'crud', 'edulevel', 'contextid',
-        'contextlevel', 'contextinstanceid', 'userid', 'courseid', 'relateduserid', 'anonymous', 'other',
-        'timecreated');</code></pre></figure>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> 
+
+<span class="k">private</span> <span class="k">static</span> <span class="nv">$fields</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'eventname'</span><span class="p">,</span> <span class="s1">'component'</span><span class="p">,</span> <span class="s1">'action'</span><span class="p">,</span> <span class="s1">'target'</span><span class="p">,</span> <span class="s1">'objecttable'</span><span class="p">,</span> <span class="s1">'objectid'</span><span class="p">,</span> <span class="s1">'crud'</span><span class="p">,</span> <span class="s1">'edulevel'</span><span class="p">,</span> <span class="s1">'contextid'</span><span class="p">,</span>
+        <span class="s1">'contextlevel'</span><span class="p">,</span> <span class="s1">'contextinstanceid'</span><span class="p">,</span> <span class="s1">'userid'</span><span class="p">,</span> <span class="s1">'courseid'</span><span class="p">,</span> <span class="s1">'relateduserid'</span><span class="p">,</span> <span class="s1">'anonymous'</span><span class="p">,</span> <span class="s1">'other'</span><span class="p">,</span>
+        <span class="s1">'timecreated'</span><span class="p">);</span></code></pre></figure>
 
 <p>Note that you can access these fields values in your observer with parameter <code class="highlighter-rouge">$event</code>. To any information you want to pass, you should use field <code class="highlighter-rouge">other</code> (variable array). Then in your observer, you get them in <code class="highlighter-rouge">$event-&gt;other</code>.</p>
 
@@ -185,31 +189,14 @@ class core_blog_observer {
 
             </article>
 
-            <section class="share">
-    <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20https://mpnam.github.io/event-observers-in-moodle/%20via%20&#64;&hashtags=moodle,ui,tutorial,"
-    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
-        <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
-    </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=https://mpnam.github.io/event-observers-in-moodle/"
-    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
-        <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
-    </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=https://mpnam.github.io/event-observers-in-moodle/"
-    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
-        <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
-    </a>
-</section>
             <section class="author" itemprop="author">
     <div class="details" itemscope itemtype="http://schema.org/Person">
         <img itemprop="image" class="img-rounded" src="/blog/assets/img/blog-author.jpg" alt="">
         <p class="def">Author</p>
         <h3 class="name">
-            <a itemprop="name" href="https://plus.google.com/+/posts">Namu</a>
+            <a itemprop="name" href="https://mpnam.github.io">Namu</a>
         </h3>
         <p class="desc">Full stack developer at VMobile</p>
-        <p><a itemprop="email" class="email" href="mailto:mpnam1991@gmail.com">mpnam1991@gmail.com</a></p>
-        <p><a itemprop="github" class="github" href="https://github.com/mpnam">github.com/mpnam</a></p>
     </div>
 </section>
 

@@ -119,24 +119,26 @@
 <h2 id="declare-new-services-functions">Declare new services functions</h2>
 <p>Firstly, you need to declare your new services in <code class="highlighter-rouge">.\lib\db\services.php</code> (recommended). You can also declare your own <code class="highlighter-rouge">services.php</code> in the <strong>db</strong> sub-folder of your plugin. Actually, the second way is better since it makes the code is clear. But it may cost you time to make everything works due to my experience. Here is the sample structure of the file:</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$functions = array(
-        'local_PLUGINNAME_FUNCTIONNAME' =&gt; array( // the name of the web service function that the client will call.                                                                      // create this class in local/PLUGINNAME/externallib.php
-                'classname'   =&gt; 'local_PLUGINNAME_external',
-                // implement this function into the above class
-                'methodname'  =&gt; 'FUNCTIONNAME', 
-                'classpath'   =&gt; 'local/PLUGINNAME/externallib.php',
-                'description' =&gt; 'This documentation will be displayed in the generated API documentation 
-                                          (Administration &gt; Plugins &gt; Webservices &gt; API documentation)',
-                // the value is 'write' if your function does any database change, otherwise it is 'read'.
-                'type'        =&gt; 'write', 
-                // List the capabilities used in the function (missing capabilities are displayed for authorised users and
-                // also for manually created tokens in the web interface, this is just informative).
-                'capabilities'  =&gt; 'moodle/xxx:yyy, addon/xxx:yyy',                 
-                // Optional, only available for Moodle 3.1 onwards. List of built-in services (by shortname) where the
-                // function will be included. Services created manually via the Moodle interface are not supported.
-                'services' =&gt; array(MOODLE_OFFICIAL_MOBILE_SERVICE)                             
-        )
-);</code></pre></figure>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="nv">$functions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'local_PLUGINNAME_FUNCTIONNAME'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="c1">// the name of the web service function that the client will call.                                                                      // create this class in local/PLUGINNAME/externallib.php
+</span>                <span class="s1">'classname'</span>   <span class="o">=&gt;</span> <span class="s1">'local_PLUGINNAME_external'</span><span class="p">,</span>
+                <span class="c1">// implement this function into the above class
+</span>                <span class="s1">'methodname'</span>  <span class="o">=&gt;</span> <span class="s1">'FUNCTIONNAME'</span><span class="p">,</span> 
+                <span class="s1">'classpath'</span>   <span class="o">=&gt;</span> <span class="s1">'local/PLUGINNAME/externallib.php'</span><span class="p">,</span>
+                <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">'This documentation will be displayed in the generated API documentation 
+                                          (Administration &gt; Plugins &gt; Webservices &gt; API documentation)'</span><span class="p">,</span>
+                <span class="c1">// the value is 'write' if your function does any database change, otherwise it is 'read'.
+</span>                <span class="s1">'type'</span>        <span class="o">=&gt;</span> <span class="s1">'write'</span><span class="p">,</span> 
+                <span class="c1">// List the capabilities used in the function (missing capabilities are displayed for authorised users and
+</span>                <span class="c1">// also for manually created tokens in the web interface, this is just informative).
+</span>                <span class="s1">'capabilities'</span>  <span class="o">=&gt;</span> <span class="s1">'moodle/xxx:yyy, addon/xxx:yyy'</span><span class="p">,</span>                 
+                <span class="c1">// Optional, only available for Moodle 3.1 onwards. List of built-in services (by shortname) where the
+</span>                <span class="c1">// function will be included. Services created manually via the Moodle interface are not supported.
+</span>                <span class="s1">'services'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="nx">MOODLE_OFFICIAL_MOBILE_SERVICE</span><span class="p">)</span>                             
+        <span class="p">)</span>
+<span class="p">);</span></code></pre></figure>
 
 <p><strong>Note:</strong> You need to update <code class="highlighter-rouge">version.php</code> to upgrade Moodle. For further information, you might want to check these tables in the database: <code class="highlighter-rouge">mdl_external_services</code>, <code class="highlighter-rouge">mdl_external_services_functions</code>, <code class="highlighter-rouge">mdl_external_services_users</code></p>
 
@@ -146,110 +148,99 @@
 
 <h4 id="declare-parameters">Declare parameters</h4>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">   /**
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+   <span class="sd">/**
      * Describes the parameters for post_course_blog.
      *
      * @return external_external_function_parameters
      * @since Moodle 2.5
-     */
-    public static function post_course_blog_parameters() {
-        return new external_function_parameters (
-            array(
-                'content' =&gt; new external_multiple_structure(
-                    new external_single_structure(
-                                array(
-                        'subject' =&gt; new external_value(PARAM_TEXT, 'Subject'),
-                        'summary' =&gt; new external_value(PARAM_RAW, 'Summary', VALUE_OPTIONAL),
-                        'content' =&gt; new external_value(PARAM_RAW, 'Content', VALUE_OPTIONAL),
-                        'attachment' =&gt; new external_value(PARAM_TEXT, 'Attachment', VALUE_OPTIONAL),
-                        'created' =&gt; new external_value(PARAM_INT, 'Created'),
-                                )
-                    )
-                ),
-                'courseid' =&gt; new external_value(PARAM_INT, 'Course ID'),
-                'userid' =&gt; new external_value(PARAM_INT, 'User ID'),
-            )
-        );
-    }</code></pre></figure>
+     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">post_course_blog_parameters</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">external_function_parameters</span> <span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">external_multiple_structure</span><span class="p">(</span>
+                    <span class="k">new</span> <span class="nx">external_single_structure</span><span class="p">(</span>
+                                <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'subject'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">external_value</span><span class="p">(</span><span class="nx">PARAM_TEXT</span><span class="p">,</span> <span class="s1">'Subject'</span><span class="p">),</span>
+                        <span class="s1">'summary'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">external_value</span><span class="p">(</span><span class="nx">PARAM_RAW</span><span class="p">,</span> <span class="s1">'Summary'</span><span class="p">,</span> <span class="nx">VALUE_OPTIONAL</span><span class="p">),</span>
+                        <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">external_value</span><span class="p">(</span><span class="nx">PARAM_RAW</span><span class="p">,</span> <span class="s1">'Content'</span><span class="p">,</span> <span class="nx">VALUE_OPTIONAL</span><span class="p">),</span>
+                        <span class="s1">'attachment'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">external_value</span><span class="p">(</span><span class="nx">PARAM_TEXT</span><span class="p">,</span> <span class="s1">'Attachment'</span><span class="p">,</span> <span class="nx">VALUE_OPTIONAL</span><span class="p">),</span>
+                        <span class="s1">'created'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">external_value</span><span class="p">(</span><span class="nx">PARAM_INT</span><span class="p">,</span> <span class="s1">'Created'</span><span class="p">),</span>
+                                <span class="p">)</span>
+                    <span class="p">)</span>
+                <span class="p">),</span>
+                <span class="s1">'courseid'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">external_value</span><span class="p">(</span><span class="nx">PARAM_INT</span><span class="p">,</span> <span class="s1">'Course ID'</span><span class="p">),</span>
+                <span class="s1">'userid'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">external_value</span><span class="p">(</span><span class="nx">PARAM_INT</span><span class="p">,</span> <span class="s1">'User ID'</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">);</span>
+    <span class="p">}</span></code></pre></figure>
 
 <h3 id="body">Body</h3>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">   /**
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+   <span class="sd">/**
      * Post a blog into a course
      *
      * @param blog $blog detail
      * @return status
      * @since Moodle 2.5
-     */
-    public static function post_course_blog($content, $courseid, $userid) {
-        global $CFG, $DB; 
+     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">post_course_blog</span><span class="p">(</span><span class="nv">$content</span><span class="p">,</span> <span class="nv">$courseid</span><span class="p">,</span> <span class="nv">$userid</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">global</span> <span class="nv">$CFG</span><span class="p">,</span> <span class="nv">$DB</span><span class="p">;</span> 
 
-        require_once($CFG-&gt;dirroot . "/blog/lib.php");
-        require_once($CFG-&gt;dirroot . "/user/lib.php");
-        require_once($CFG-&gt;dirroot . "/blog/blog_airnotifier.php");
+        <span class="k">require_once</span><span class="p">(</span><span class="nv">$CFG</span><span class="o">-&gt;</span><span class="na">dirroot</span> <span class="o">.</span> <span class="s2">"/blog/lib.php"</span><span class="p">);</span>
+        <span class="k">require_once</span><span class="p">(</span><span class="nv">$CFG</span><span class="o">-&gt;</span><span class="na">dirroot</span> <span class="o">.</span> <span class="s2">"/user/lib.php"</span><span class="p">);</span>
+        <span class="k">require_once</span><span class="p">(</span><span class="nv">$CFG</span><span class="o">-&gt;</span><span class="na">dirroot</span> <span class="o">.</span> <span class="s2">"/blog/blog_airnotifier.php"</span><span class="p">);</span>
 
-        $params = self::validate_parameters(self::post_course_blog_parameters(), 
-                                                         array('content'  =&gt; $content,
-                                                               'courseid' =&gt; $courseid,
-                                                               'userid'   =&gt; $userid));
-        $content = $params['content'][0];
+        <span class="nv">$params</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">validate_parameters</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">post_course_blog_parameters</span><span class="p">(),</span> 
+                                                         <span class="k">array</span><span class="p">(</span><span class="s1">'content'</span>  <span class="o">=&gt;</span> <span class="nv">$content</span><span class="p">,</span>
+                                                               <span class="s1">'courseid'</span> <span class="o">=&gt;</span> <span class="nv">$courseid</span><span class="p">,</span>
+                                                               <span class="s1">'userid'</span>   <span class="o">=&gt;</span> <span class="nv">$userid</span><span class="p">));</span>
+        <span class="nv">$content</span> <span class="o">=</span> <span class="nv">$params</span><span class="p">[</span><span class="s1">'content'</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
 
-        // Validate course
-        if (! ($course = $DB-&gt;get_record('course', array('id'=&gt;$params['courseid'])))) {
-            throw new moodle_exception('invalidcourseid', 'error');
-        }
+        <span class="c1">// Validate course
+</span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="p">(</span><span class="nv">$course</span> <span class="o">=</span> <span class="nv">$DB</span><span class="o">-&gt;</span><span class="na">get_record</span><span class="p">(</span><span class="s1">'course'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'id'</span><span class="o">=&gt;</span><span class="nv">$params</span><span class="p">[</span><span class="s1">'courseid'</span><span class="p">]))))</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">moodle_exception</span><span class="p">(</span><span class="s1">'invalidcourseid'</span><span class="p">,</span> <span class="s1">'error'</span><span class="p">);</span>
+        <span class="p">}</span>
 
-        //@todo: Do something here
-
-        return array(
-            'status' =&gt; 1,
-            'id' =&gt; $insertedID);
-    }</code></pre></figure>
+        <span class="c1">//@todo: Do something here
+</span>
+        <span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="nv">$insertedID</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></figure>
 
 <h3 id="return">Return</h3>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">   /**
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+   <span class="sd">/**
      * Describes the post_course_blog return value.
      *
      * @return external_multiple_structure
      * @since Moodle 2.5
-     */
-    public static function post_course_blog_returns() {
-        return new external_single_structure(
-            array(
-                'status'      =&gt; new external_value(PARAM_INT, 'Status (0 is fail, 1 is success)'),
-                'id'      =&gt; new external_value(PARAM_INT, 'Blog id'),
-            ), 'post'
-        );
-    }</code></pre></figure>
+     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">post_course_blog_returns</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">external_single_structure</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'status'</span>      <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">external_value</span><span class="p">(</span><span class="nx">PARAM_INT</span><span class="p">,</span> <span class="s1">'Status (0 is fail, 1 is success)'</span><span class="p">),</span>
+                <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">external_value</span><span class="p">(</span><span class="nx">PARAM_INT</span><span class="p">,</span> <span class="s1">'Blog id'</span><span class="p">),</span>
+            <span class="p">),</span> <span class="s1">'post'</span>
+        <span class="p">);</span>
+    <span class="p">}</span></code></pre></figure>
 
             </article>
 
-            <section class="share">
-    <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20https://mpnam.github.io/create-new-services-in-moodle/%20via%20&#64;&hashtags=moodle,service,mobile,tutorial,"
-    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
-        <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
-    </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=https://mpnam.github.io/create-new-services-in-moodle/"
-    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
-        <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
-    </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=https://mpnam.github.io/create-new-services-in-moodle/"
-    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
-        <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
-    </a>
-</section>
             <section class="author" itemprop="author">
     <div class="details" itemscope itemtype="http://schema.org/Person">
         <img itemprop="image" class="img-rounded" src="/blog/assets/img/blog-author.jpg" alt="">
         <p class="def">Author</p>
         <h3 class="name">
-            <a itemprop="name" href="https://plus.google.com/+/posts">Namu</a>
+            <a itemprop="name" href="https://mpnam.github.io">Namu</a>
         </h3>
         <p class="desc">Full stack developer at VMobile</p>
-        <p><a itemprop="email" class="email" href="mailto:mpnam1991@gmail.com">mpnam1991@gmail.com</a></p>
-        <p><a itemprop="github" class="github" href="https://github.com/mpnam">github.com/mpnam</a></p>
     </div>
 </section>
 

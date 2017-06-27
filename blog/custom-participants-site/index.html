@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Custom Your Site in Moodle</title>
-    <meta name="description" content="How to customize a page in Moodle.">
+    <meta name="description" content="This post I will show different ways to customize your site. Specifically, I will use Participants View as a demonstration.">
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="https://mpnam.github.io/blog/custom-participants-site/">
@@ -14,7 +14,7 @@
     
     <meta property="og:image" content="https://mpnam.github.io/blog/assets/img/blog-image.png">
     
-    <meta property="og:description" content="How to customize a page in Moodle.">
+    <meta property="og:description" content="This post I will show different ways to customize your site. Specifically, I will use Participants View as a demonstration.">
     <meta property="og:site_name" content="Nam Mai - Full stack developer">
 
     <!-- Favicon -->
@@ -100,97 +100,86 @@
             <time itemprop="datePublished" datetime="2017-03-15T00:00:00+09:00" class="date">15 Mar 2017</time>
         
         <h1 class="post-title" itemprop="name">Custom Your Site in Moodle</h1>
-        <p itemprop="description" class="subtitle">How to customize a page in Moodle.</p>
+        <p itemprop="description" class="subtitle">This post I will show different ways to customize your site. Specifically, I will use Participants View as a demonstration.</p>
     </div>
 </header>
         <section class="post">
 
             <article role="article" id="post" class="post-content" itemprop="articleBody">
-                <p>This post I will show different ways to customize your site. Specifically, I will use Participants View as a demonstration.</p>
+                <h2 id="hide-user-fields">Hide user fields</h2>
+<p>Lets have a look inside <code class="highlighter-rouge">/user/index.php</code>. This is the file which ouputs the page we want to customize.</p>
 
-<h2 id="hide-user-fields">Hide user fields</h2>
-<p>Lets have a look inside <code class="highlighter-rouge">/user/index.php</code>. This is the file which ouput the page we want to customize.</p>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">// Get the hidden field list.
-if (has_capability('moodle/course:viewhiddenuserfields', $context)) {
-    $hiddenfields = array();  // Teachers and admins are allowed to see everything.
-} else {
-    $hiddenfields = array_flip(explode(',', $CFG-&gt;hiddenuserfields));
-}
+<span class="c1">// Get the hidden field list.
+</span><span class="k">if</span> <span class="p">(</span><span class="nx">has_capability</span><span class="p">(</span><span class="s1">'moodle/course:viewhiddenuserfields'</span><span class="p">,</span> <span class="nv">$context</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$hiddenfields</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>  <span class="c1">// Teachers and admins are allowed to see everything.
+</span><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$hiddenfields</span> <span class="o">=</span> <span class="nb">array_flip</span><span class="p">(</span><span class="nb">explode</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="nv">$CFG</span><span class="o">-&gt;</span><span class="na">hiddenuserfields</span><span class="p">));</span>
+<span class="p">}</span>
 
-if (isset($hiddenfields['lastaccess'])) {
-    // Do not allow access since filtering.
-    $accesssince = 0;
-}</code></pre></figure>
+<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$hiddenfields</span><span class="p">[</span><span class="s1">'lastaccess'</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="c1">// Do not allow access since filtering.
+</span>    <span class="nv">$accesssince</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
-<p>From this, you can define which fields you want to show/hide. I recommend you to setting hidden fields in <code class="highlighter-rouge">Site administration / Users / Permissions / User Policies</code>. Then, you need to specify which users you want to hide these field by update roles. Since this page is for course participants page, you may want to unset capability <code class="highlighter-rouge">moodle/course:viewhiddenuserfields</code>. <strong>Note:</strong> for the user’s profile pages, use the capability <code class="highlighter-rouge">moodle/user:viewhiddendetails</code> instead.</p>
+<p>From this, you can define which fields you want to show/hide. I recommend you to set hidden fields in <code class="highlighter-rouge">Site administration / Users / Permissions / User Policies</code>. Then, you need to specify which users you want to hide these field by updating roles. Since this page is for course participants page, you may want to unset capability <code class="highlighter-rouge">moodle/course:viewhiddenuserfields</code>. <strong>Note:</strong> for the user’s profile pages, use the capability <code class="highlighter-rouge">moodle/user:viewhiddendetails</code> instead.</p>
 
 <h2 id="hide-some-components">Hide some components</h2>
-<p>In this section, I will give the example of how to hide user lists filter (top right corner in Boost theme).</p>
+<p>In this section, I will give an example of how to hide user lists filter (top right corner in Boost theme).</p>
 
-<p><img src="http://mpnam.github.io//assets/img/participant_userlist.png" alt="" style="margin:0 auto;width:40%;height:40%;" /></p>
+<p><img src="http://mpnam.github.io/blog/assets/img/participant_userlist.png" alt="" style="margin:0 auto;width:40%;height:40%;" /></p>
 
-<p>$controlstable maintains the first row right after Participants title.</p>
+<p><code class="highlighter-rouge">$controlstable</code> maintains the first row right after Participants title.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$formatmenu = array( '0' =&gt; get_string('brief'),
-                     '1' =&gt; get_string('userdetails'));
-$select = new single_select($baseurl, 'mode', $formatmenu, $mode, null, 'formatmenu');
-$select-&gt;set_label(get_string('userlist'));
-$userlistcell = new html_table_cell();
-$userlistcell-&gt;attributes['class'] = 'right';
-$userlistcell-&gt;text = $OUTPUT-&gt;render($select);
-$controlstable-&gt;data[0]-&gt;cells[] = $userlistcell;
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
-echo html_writer::table($controlstable);</code></pre></figure>
+<span class="nv">$formatmenu</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'0'</span> <span class="o">=&gt;</span> <span class="nx">get_string</span><span class="p">(</span><span class="s1">'brief'</span><span class="p">),</span>
+                     <span class="s1">'1'</span> <span class="o">=&gt;</span> <span class="nx">get_string</span><span class="p">(</span><span class="s1">'userdetails'</span><span class="p">));</span>
+<span class="nv">$select</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">single_select</span><span class="p">(</span><span class="nv">$baseurl</span><span class="p">,</span> <span class="s1">'mode'</span><span class="p">,</span> <span class="nv">$formatmenu</span><span class="p">,</span> <span class="nv">$mode</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">'formatmenu'</span><span class="p">);</span>
+<span class="nv">$select</span><span class="o">-&gt;</span><span class="na">set_label</span><span class="p">(</span><span class="nx">get_string</span><span class="p">(</span><span class="s1">'userlist'</span><span class="p">));</span>
+<span class="nv">$userlistcell</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">html_table_cell</span><span class="p">();</span>
+<span class="nv">$userlistcell</span><span class="o">-&gt;</span><span class="na">attributes</span><span class="p">[</span><span class="s1">'class'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'right'</span><span class="p">;</span>
+<span class="nv">$userlistcell</span><span class="o">-&gt;</span><span class="na">text</span> <span class="o">=</span> <span class="nv">$OUTPUT</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$select</span><span class="p">);</span>
+<span class="nv">$controlstable</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">cells</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$userlistcell</span><span class="p">;</span>
 
-<p>The most easiest way is remove the statement <code class="highlighter-rouge">$controlstable-&gt;data[0]-&gt;cells[] = $userlistcell;</code>. However, it would be very bad way to do it because other themes are also no longer show this component. I will show you how to make it more general and put your customization in your theme.  <br />
+<span class="k">echo</span> <span class="nx">html_writer</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="nv">$controlstable</span><span class="p">);</span></code></pre></figure>
+
+<p>The most easiest way is to remove the statement <code class="highlighter-rouge">$controlstable-&gt;data[0]-&gt;cells[] = $userlistcell;</code>. However, it would be very bad way to do it because other themes are also no longer show this component. I will show you how to make it more general and put your customization in your theme.  <br />
 Firstly, I will define additional render method in <code class="highlighter-rouge">user/renderer.php</code> as follows</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">/**
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="sd">/**
  * Displays User list filter
  *
  * @return string
- */
- public function user_participants_userlistfilter ($content) {
-    return $content;
- }</code></pre></figure>
+ */</span>
+ <span class="k">public</span> <span class="k">function</span> <span class="nf">user_participants_userlistfilter</span> <span class="p">(</span><span class="nv">$content</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$content</span><span class="p">;</span>
+ <span class="p">}</span></code></pre></figure>
 
 <p>To make it simple for the tutorial, this function only take a <code class="highlighter-rouge">$content</code> and return itself. The idea is, I will override this render in my theme, and decide to return ‘’. Therefore, the <code class="highlighter-rouge">$content</code> will no longer appear in the view. Back to the <code class="highlighter-rouge">/user/index.php</code>, I will modify the previous code about $controlstable$ as follows:</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$user_output = $PAGE-&gt;get_renderer('core', 'user');
-$controlstable-&gt;data[0]-&gt;cells[] = $user_output-&gt;user_participants_userlistfilter($userlistcell);</code></pre></figure>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="nv">$user_output</span> <span class="o">=</span> <span class="nv">$PAGE</span><span class="o">-&gt;</span><span class="na">get_renderer</span><span class="p">(</span><span class="s1">'core'</span><span class="p">,</span> <span class="s1">'user'</span><span class="p">);</span>
+<span class="nv">$controlstable</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">cells</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$user_output</span><span class="o">-&gt;</span><span class="na">user_participants_userlistfilter</span><span class="p">(</span><span class="nv">$userlistcell</span><span class="p">);</span></code></pre></figure>
 
 <p>Now, the content of <code class="highlighter-rouge">$controlstable-&gt;data[0]-&gt;cells[]</code> which shows the user lists filter, is the output of the render I have just made. If you change to body of the function <code class="highlighter-rouge">user_participants_userlistfilter</code> to return ‘’, you will see there is no user lists filter in the participant view. I will leave it return <code class="highlighter-rouge">$content</code>, by that way, other themes will work as normal.</p>
 
-<p>Then, I will override the function <code class="highlighter-rouge">user_participants_userlistfilter</code> in my theme, to make sure that it return ‘’. You could read the post <a href="https://mpnam.github.io/moodle/2017/03/15/overriding-a-renderer.html">Override a Render</a> to know how to do it.</p>
+<p>Then, I will override the function <code class="highlighter-rouge">user_participants_userlistfilter</code> in my theme, to make sure that it return ‘’. You may want to read the post <a href="https://mpnam.github.io/blog/overriding-a-renderer/">Override a Render</a> to know how to do it.</p>
 
             </article>
 
-            <section class="share">
-    <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20https://mpnam.github.io/custom-participants-site/%20via%20&#64;&hashtags=moodle,ui,tutorial,"
-    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
-        <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
-    </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=https://mpnam.github.io/custom-participants-site/"
-    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
-        <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
-    </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=https://mpnam.github.io/custom-participants-site/"
-    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
-        <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
-    </a>
-</section>
             <section class="author" itemprop="author">
     <div class="details" itemscope itemtype="http://schema.org/Person">
         <img itemprop="image" class="img-rounded" src="/blog/assets/img/blog-author.jpg" alt="">
         <p class="def">Author</p>
         <h3 class="name">
-            <a itemprop="name" href="https://plus.google.com/+/posts">Namu</a>
+            <a itemprop="name" href="https://mpnam.github.io">Namu</a>
         </h3>
         <p class="desc">Full stack developer at VMobile</p>
-        <p><a itemprop="email" class="email" href="mailto:mpnam1991@gmail.com">mpnam1991@gmail.com</a></p>
-        <p><a itemprop="github" class="github" href="https://github.com/mpnam">github.com/mpnam</a></p>
     </div>
 </section>
 
