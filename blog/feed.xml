@@ -3,18 +3,18 @@
   <channel>
     <title>Nam Mai - Full stack developer</title>
     <description>My Dev Journal</description>
-    <link>https://mpnam.github.io/blog/</link>
-    <atom:link href="https://mpnam.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 27 Jun 2017 18:09:18 +0900</pubDate>
-    <lastBuildDate>Tue, 27 Jun 2017 18:09:18 +0900</lastBuildDate>
+    <link>http://localhost:4000/blog/</link>
+    <atom:link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 27 Jun 2017 18:20:22 +0900</pubDate>
+    <lastBuildDate>Tue, 27 Jun 2017 18:20:22 +0900</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
         <title>Overriding a Renderer</title>
         <description>&lt;p&gt;One way to customize specific page in your theme is to override a renderer. This post will show you an example of how to do this.&lt;/p&gt; &lt;hr /&gt; &lt;h2 id=&quot;overall&quot;&gt;Overall&lt;/h2&gt; &lt;p&gt;The following diagram from Moodle docs gives the overall picture of how render works:&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;https://docs.moodle.org/dev/images_dev/1/12/uml_output_renderers.png&quot; alt=&quot;&quot; style=&quot;margin:0 auto;width:80%;height:80%;&quot; /&gt;&lt;/p&gt; &lt;p&gt;To understand better, you may want to take a look inside &lt;code class=&quot;highlighter-rouge&quot;&gt;lib\outputrenderer.php&lt;/code&gt; where &lt;code class=&quot;highlighter-rouge&quot;&gt;renderer_base&lt;/code&gt; class is defined. And check some renderer class of some plugins, or core modules to see how it works.&lt;/p&gt; &lt;p&gt;Any &lt;code class=&quot;highlighter-rouge&quot;&gt;core_renderer&lt;/code&gt; is available through the global &lt;code class=&quot;highlighter-rouge&quot;&gt;$OUTPUT&lt;/code&gt; variable. For &lt;code class=&quot;highlighter-rouge&quot;&gt;plugin_renderer&lt;/code&gt;, you...</description>
         <pubDate>Thu, 16 Mar 2017 00:00:00 +0900</pubDate>
-        <link>https://mpnam.github.io/blog/overriding-a-renderer/</link>
-        <guid isPermaLink="true">https://mpnam.github.io/blog/overriding-a-renderer/</guid>
+        <link>http://localhost:4000/blog/overriding-a-renderer/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/overriding-a-renderer/</guid>
         
         <category>moodle</category>
         
@@ -31,8 +31,8 @@
         <title>Custom Your Site in Moodle</title>
         <description>&lt;p&gt;This post I will show different ways to customize your site. Specifically, I will use Participants View as a demonstration.&lt;/p&gt; &lt;h2 id=&quot;hide-user-fields&quot;&gt;Hide user fields&lt;/h2&gt; &lt;p&gt;Lets have a look inside &lt;code class=&quot;highlighter-rouge&quot;&gt;/user/index.php&lt;/code&gt;. This is the file which ouput the page we want to customize.&lt;/p&gt; &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;// Get the hidden field list. if (has_capability('moodle/course:viewhiddenuserfields', $context)) { $hiddenfields = array(); // Teachers and admins are allowed to see everything. } else { $hiddenfields = array_flip(explode(',', $CFG-&amp;gt;hiddenuserfields)); } if (isset($hiddenfields['lastaccess'])) { // Do not allow access since filtering. $accesssince = 0; }&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt; &lt;p&gt;From this, you can define which fields you want to...</description>
         <pubDate>Wed, 15 Mar 2017 00:00:00 +0900</pubDate>
-        <link>https://mpnam.github.io/blog/custom-participants-site/</link>
-        <guid isPermaLink="true">https://mpnam.github.io/blog/custom-participants-site/</guid>
+        <link>http://localhost:4000/blog/custom-participants-site/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/custom-participants-site/</guid>
         
         <category>moodle</category>
         
@@ -49,8 +49,8 @@
         <title>Event Observers in Moodle</title>
         <description>&lt;p&gt;It is essential to support such thing likes event observers in any framework. In this post, I will show how to defined your observers in Moodle.&lt;/p&gt; &lt;hr /&gt; &lt;h2 id=&quot;events&quot;&gt;Events&lt;/h2&gt; &lt;p&gt;In Moodle, when an action takes place, an event is created by a core API or plugin. For example, core API events are stored in &lt;code class=&quot;highlighter-rouge&quot;&gt;/lib/classes/event&lt;/code&gt;. All events must be extended from abstact class &lt;strong&gt;base&lt;/strong&gt;. In order to trigger an event &lt;code class=&quot;highlighter-rouge&quot;&gt;$event&lt;/code&gt;, you simply executing &lt;code class=&quot;highlighter-rouge&quot;&gt;$event-&amp;gt;trigger()&lt;/code&gt;. For example, the following codes is for trigger the event of adding new blog post.&lt;/p&gt; &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;$eventparms = array('context'...</description>
         <pubDate>Sat, 11 Mar 2017 00:00:00 +0900</pubDate>
-        <link>https://mpnam.github.io/blog/event-observers-in-moodle/</link>
-        <guid isPermaLink="true">https://mpnam.github.io/blog/event-observers-in-moodle/</guid>
+        <link>http://localhost:4000/blog/event-observers-in-moodle/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/event-observers-in-moodle/</guid>
         
         <category>moodle</category>
         
@@ -67,8 +67,8 @@
         <title>Multiple Languages in Moodle Mobile 2</title>
         <description>&lt;hr /&gt; &lt;h3 id=&quot;change-the-app-strings&quot;&gt;Change the app strings&lt;/h3&gt; &lt;p&gt;Language strings are located in:&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;www/core/lang/ folder (a different file for each language)&lt;br /&gt; www/core/components/COMPONENT_NAME/lang folder&lt;br /&gt; www/addons/ADDON_NAME/lang folder&lt;/p&gt; &lt;/blockquote&gt; &lt;p&gt;In order to update translation, simply edit &lt;em&gt;_lang_.json&lt;/em&gt; file content. The syntax is straightforward: &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;key&quot;: &quot;content&quot;&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Use &lt;a href=&quot;http://jsonlint.com/&quot;&gt;jsonlint.com&lt;/a&gt; to validate that the new language file is correct.&lt;/p&gt; &lt;p&gt;Remember to &lt;strong&gt;run gulp&lt;/strong&gt; or &lt;strong&gt;ionic serve&lt;/strong&gt; in the project root folder so the build files are created.&lt;/p&gt; &lt;h3 id=&quot;add-new-language&quot;&gt;Add new language&lt;/h3&gt; &lt;p&gt;Besides copying new &lt;em&gt;lang&lt;/em&gt;.json file into lang folder. You also need to update &lt;em&gt;config.json&lt;/em&gt; file in &lt;code class=&quot;highlighter-rouge&quot;&gt;/www&lt;/code&gt; folder, key...</description>
         <pubDate>Fri, 10 Mar 2017 00:00:00 +0900</pubDate>
-        <link>https://mpnam.github.io/blog/multiple-language-in-moodle-mobile-2/</link>
-        <guid isPermaLink="true">https://mpnam.github.io/blog/multiple-language-in-moodle-mobile-2/</guid>
+        <link>http://localhost:4000/blog/multiple-language-in-moodle-mobile-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/multiple-language-in-moodle-mobile-2/</guid>
         
         <category>moodle</category>
         
@@ -85,8 +85,8 @@
         <title>Syntax Highlighter for Jekyll</title>
         <description>&lt;p&gt;In Bitbucket or Github, it is quite easy to highlight my code using markdown syntax. But in Jekyll, it does not work in the same way. So far, I only know two ways to highligh code in Jekyll which are Pygments and Rouge. Rouge is faster and easier to install but does not support as many languages as Pygments. This post is about Pygments.&lt;/p&gt; &lt;h2 id=&quot;prepare&quot;&gt;Prepare&lt;/h2&gt; &lt;p&gt;Pygments is the Python syntax highlighter. Therefore, the first step is about installing Python. &lt;br /&gt; So far, the working version of Python needed is v2.7. I have tried v3, but Jekyll did not...</description>
         <pubDate>Thu, 02 Mar 2017 00:00:00 +0900</pubDate>
-        <link>https://mpnam.github.io/blog/syntax-highlighter-for-jekyll/</link>
-        <guid isPermaLink="true">https://mpnam.github.io/blog/syntax-highlighter-for-jekyll/</guid>
+        <link>http://localhost:4000/blog/syntax-highlighter-for-jekyll/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/syntax-highlighter-for-jekyll/</guid>
         
         <category>jekyll</category>
         
@@ -99,8 +99,8 @@
         <title>Create New Services in Moodle</title>
         <description>&lt;h2 id=&quot;mobile-web-services&quot;&gt;Mobile Web Services&lt;/h2&gt; &lt;p&gt;In order to use mobile web services (similar to other kind of services), you need to enable it as follows:&lt;/p&gt; &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; * In Settings &amp;gt; Site administration &amp;gt; Plugins &amp;gt; Web services &amp;gt; External services * Check &quot;Enable mobile web services&quot; &lt;/code&gt;&lt;/pre&gt; &lt;/div&gt; &lt;p&gt;You can see the API Documentation in &lt;code class=&quot;highlighter-rouge&quot;&gt;Settings &amp;gt; Site administration &amp;gt; Plugins &amp;gt; Web services &amp;gt; API Documentation&lt;/code&gt;&lt;/p&gt; &lt;h2 id=&quot;declare-new-services-functions&quot;&gt;Declare new services functions&lt;/h2&gt; &lt;p&gt;Firstly, you need to declare your new services in &lt;code class=&quot;highlighter-rouge&quot;&gt;.\lib\db\services.php&lt;/code&gt; (recommended). You can also declare your own &lt;code class=&quot;highlighter-rouge&quot;&gt;services.php&lt;/code&gt; in the &lt;strong&gt;db&lt;/strong&gt; sub-folder of your...</description>
         <pubDate>Wed, 01 Mar 2017 00:00:00 +0900</pubDate>
-        <link>https://mpnam.github.io/blog/create-new-services-in-moodle/</link>
-        <guid isPermaLink="true">https://mpnam.github.io/blog/create-new-services-in-moodle/</guid>
+        <link>http://localhost:4000/blog/create-new-services-in-moodle/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/create-new-services-in-moodle/</guid>
         
         <category>moodle</category>
         

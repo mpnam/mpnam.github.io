@@ -2,84 +2,84 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
         <url>
-            <loc>https://mpnam.github.io/blog/about/index.html</loc>
+            <loc>http://localhost:4000/blog/about/index.html</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/category/css/</loc>
+            <loc>http://localhost:4000/blog/category/css/</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/category/dev/</loc>
+            <loc>http://localhost:4000/blog/category/dev/</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/feed.xml</loc>
+            <loc>http://localhost:4000/blog/feed.xml</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/category/html/</loc>
+            <loc>http://localhost:4000/blog/category/html/</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/</loc>
+            <loc>http://localhost:4000/blog/</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/category/jekyll/</loc>
+            <loc>http://localhost:4000/blog/category/jekyll/</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/category/js/</loc>
+            <loc>http://localhost:4000/blog/category/js/</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/category/misc/</loc>
+            <loc>http://localhost:4000/blog/category/misc/</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/search.json</loc>
+            <loc>http://localhost:4000/blog/search.json</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/series/index.html</loc>
+            <loc>http://localhost:4000/blog/series/index.html</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/sitemap.xml</loc>
+            <loc>http://localhost:4000/blog/sitemap.xml</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/category/svg/</loc>
+            <loc>http://localhost:4000/blog/category/svg/</loc>
         </url>
     
         <url>
-            <loc>https://mpnam.github.io/blog/tags/index.html</loc>
+            <loc>http://localhost:4000/blog/tags/index.html</loc>
         </url>
     
     
         <url>
-            <loc>https://mpnam.github.io/blog/overriding-a-renderer/</loc>
+            <loc>http://localhost:4000/blog/overriding-a-renderer/</loc>
         </url>
   
         <url>
-            <loc>https://mpnam.github.io/blog/custom-participants-site/</loc>
+            <loc>http://localhost:4000/blog/custom-participants-site/</loc>
         </url>
   
         <url>
-            <loc>https://mpnam.github.io/blog/event-observers-in-moodle/</loc>
+            <loc>http://localhost:4000/blog/event-observers-in-moodle/</loc>
         </url>
   
         <url>
-            <loc>https://mpnam.github.io/blog/multiple-language-in-moodle-mobile-2/</loc>
+            <loc>http://localhost:4000/blog/multiple-language-in-moodle-mobile-2/</loc>
         </url>
   
         <url>
-            <loc>https://mpnam.github.io/blog/syntax-highlighter-for-jekyll/</loc>
+            <loc>http://localhost:4000/blog/syntax-highlighter-for-jekyll/</loc>
         </url>
   
         <url>
-            <loc>https://mpnam.github.io/blog/create-new-services-in-moodle/</loc>
+            <loc>http://localhost:4000/blog/create-new-services-in-moodle/</loc>
         </url>
   
 </urlset>
