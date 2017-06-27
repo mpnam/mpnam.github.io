@@ -1,0 +1,45 @@
+[
+  
+    {
+      "title"    : "Overriding a Renderer",
+      "tags"     : "moodle, ui, and tutorial",
+      "url"      : "/blog/overriding-a-renderer/",
+      "date"     : "16 Mar 2017"
+    } ,
+  
+    {
+      "title"    : "Custom Your Site in Moodle",
+      "tags"     : "moodle, ui, and tutorial",
+      "url"      : "/blog/custom-participants-site/",
+      "date"     : "15 Mar 2017"
+    } ,
+  
+    {
+      "title"    : "Event Observers in Moodle",
+      "tags"     : "moodle, ui, and tutorial",
+      "url"      : "/blog/event-observers-in-moodle/",
+      "date"     : "11 Mar 2017"
+    } ,
+  
+    {
+      "title"    : "Multiple Languages in Moodle Mobile 2",
+      "tags"     : "moodle, mobile, and tutorial",
+      "url"      : "/blog/multiple-language-in-moodle-mobile-2/",
+      "date"     : "10 Mar 2017"
+    } ,
+  
+    {
+      "title"    : "Syntax Highlighter for Jekyll",
+      "tags"     : "jekyll and tutorial",
+      "url"      : "/blog/syntax-highlighter-for-jekyll/",
+      "date"     : "02 Mar 2017"
+    } ,
+  
+    {
+      "title"    : "Create New Services in Moodle",
+      "tags"     : "moodle, service, mobile, and tutorial",
+      "url"      : "/blog/create-new-services-in-moodle/",
+      "date"     : "01 Mar 2017"
+    } 
+  
+]
