@@ -1757,6 +1757,86 @@ footer a {
 .post-html footer {
     background-color: #eb7728
 }
+.post-react-native .title-category {
+    color: #2da0c3
+}
+.post-react-native .post-content h1,
+.post-react-native .post-content h2,
+.post-react-native .post-content h3,
+.post-react-native .post-content h4 {
+    color: #2da0c3
+}
+.post-react-native .post-content a {
+    color: #2da0c3;
+    border-bottom: 2px dashed #2da0c3;
+}
+.post-react-native .post-content a:hover {
+    background-color: #2da0c3;
+    color: #fff
+}
+.post-react-native .post-content strong {
+    color: #2da0c3
+}
+.post-react-native .post-content p code,
+.post-react-native .post-content li code {
+    color: #2da0c3
+}
+.post-react-native .post-content blockquote {
+    border-left: .313rem solid #2da0c3
+}
+.post-react-native .header-post,
+.post-react-native .header-site {
+    background-color: #2da0c3;
+}
+.post-react-native .header-post h1,
+.post-react-native .header-site h1 {
+    text-shadow: 3px 3px #24809c
+}
+.post-react-native .bar-header .logo a {
+    color: #2da0c3
+}
+.post-react-native .author .email,
+.post-react-native .author .github {
+    color: #2da0c3
+}
+.post-react-native .share a:hover svg {
+    fill: #2da0c3
+}
+@media only screen and (max-width: 37.5rem) {
+    .post-react-native body.search-overlay:after {
+        background-color: #2da0c3
+    }
+}
+.post-react-native .icon-menu {
+    fill: #2da0c3
+}
+.post-react-native .box-body h2 {
+    color: #2da0c3
+}
+.post-react-native .box-body .tags a {
+    color: #2da0c3;
+    border: 1px solid #2da0c3
+}
+.post-react-native aside {
+    background-color: #2da0c3;
+}
+.post-react-native aside nav li a:hover {
+    color: #2da0c3
+}
+.post-react-native .ribbon span {
+    background-color: #2da0c3;
+}
+.post-react-native .ribbon span:before {
+    border-left: 3px solid #207088;
+    border-top: 3px solid #207088
+}
+.post-react-native .ribbon span:after {
+    border-right: 3px solid #207088;
+    border-top: 3px solid #207088
+}
+.post-react-native footer {
+    background-color: #2da0c3
+}
 .post-moodle .title-category {
     color: #f98012
 }

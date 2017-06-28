@@ -5,9 +5,27 @@
     <description>My Dev Journal</description>
     <link>https://mpnam.github.io/blog/</link>
     <atom:link href="https://mpnam.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 27 Jun 2017 23:10:20 +0900</pubDate>
-    <lastBuildDate>Tue, 27 Jun 2017 23:10:20 +0900</lastBuildDate>
+    <pubDate>Wed, 28 Jun 2017 17:50:39 +0900</pubDate>
+    <lastBuildDate>Wed, 28 Jun 2017 17:50:39 +0900</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
+    
+      <item>
+        <title>My Favourite React-Native Project Starter</title>
+        <description>&lt;h2 id=&quot;react-native-init&quot;&gt;react-native init&lt;/h2&gt; &lt;p&gt;From the React-Native official docs, you can use the command line &lt;code class=&quot;highlighter-rouge&quot;&gt;react-native init &amp;lt;project-name&amp;gt;&lt;/code&gt; to generate new project. However, this step will set up your project to work with the lasted version of react-native. It sounds good, but in my experience, the lasted version of react-native is not always compatible with all libraries which you are intend to use later. This failure costs me a lot of time when I first learned react-native. So far, up to this time when I write this post, I rather use react-native version 0.44.0 since it is compatible to almost...</description>
+        <pubDate>Wed, 28 Jun 2017 00:00:00 +0900</pubDate>
+        <link>https://mpnam.github.io/blog/first-react-native-project/</link>
+        <guid isPermaLink="true">https://mpnam.github.io/blog/first-react-native-project/</guid>
+        
+        <category>react-native</category>
+        
+        <category>mobile</category>
+        
+        <category>tutorial</category>
+        
+        
+        <category>React Native</category>
+        
+      </item>
     
       <item>
         <title>Overriding a Renderer</title>
