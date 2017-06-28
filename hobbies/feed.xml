@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hobbies | Nam Mai</title>
+    <description>Photo Journal</description>
+    <link>https://mpnam.github.io//hobbies/</link>
+    <atom:link href="https://mpnam.github.io//hobbies/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 28 Jun 2017 10:28:22 +0900</pubDate>
+    <lastBuildDate>Wed, 28 Jun 2017 10:28:22 +0900</lastBuildDate>
+    <generator>Jekyll v3.5.0</generator>
+    
+      <item>
+        <title>BLOG IMAGE PERFORMANCE IS NECESSARY</title>
+        <description>&lt;p&gt;I would like to thank &lt;a href=&quot;http://designyourownblog.com/about-dyob/&quot;&gt;Marianne&lt;/a&gt;, owner of &lt;a href=&quot;http://designyourownblog.com/&quot;&gt;DESIGN YOUR OWN BLOG&lt;/a&gt; who gave me permission to link to her post where she is talking about blog image performance.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Is blog image performance necessary?&lt;/p&gt;
+
+  &lt;p&gt;Consider this:&lt;/p&gt;
+
+  &lt;p&gt;Your users don’t want to wait more than 3 seconds for your page to load.&lt;/p&gt;
+
+  &lt;p&gt;Google pays attention to your website speed and ranks it accordingly.&lt;/p&gt;
+
+  &lt;p&gt;So I’d say yes, it’s very necessary.&lt;/p&gt;
+
+  &lt;p&gt;– Marianne&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you care about your readers &lt;a href=&quot;http://designyourownblog.com/blog-image-performance/&quot;&gt;this&lt;/a&gt; post is a &lt;b&gt;MUST READ&lt;/b&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;There are 3 steps (4 for JPEGs) we should take to optimize our images:&lt;/p&gt;
+
+  &lt;p&gt;Always resize the image to the largest size it will appear.&lt;/p&gt;
+
+  &lt;p&gt;Further reduce JPEG file size with these tricks.&lt;/p&gt;
+
+  &lt;p&gt;Reduce quality on save.&lt;/p&gt;
+
+  &lt;p&gt;Run it through a lossless image compression tool.&lt;/p&gt;
+
+  &lt;p&gt;– Marianne&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This Jekyll template was crafted in order to be used by photobloggers. If the photos you upload are not optimized, the page loading time will increase significantly! &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;DO NOT upload an image at its full size, such as 2500 x 3500, and then resize it in the settings after you’ve uploaded it to your blog!&lt;/p&gt;
+
+  &lt;p&gt;– Marianne&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt; So, dig in her informative post and learn how you can have a fast loading photography website!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://designyourownblog.com/blog-image-performance/&quot;&gt;&lt;b&gt;“THE BIGGEST MISTAKE YOU’RE PROBABLY MAKING WITH YOUR BLOG IMAGES + CHEAT SHEET”&lt;/b&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Thank you Marianne! :)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://designyourownblog.com/wp-content/uploads/2015/10/biggest-blog-mistake-image-performance-2.jpg&quot;&gt;Featured Image Source&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 01 Feb 2016 00:00:00 +0900</pubDate>
+        <link>https://mpnam.github.io//hobbies/journal/images-size-for-better-performance/</link>
+        <guid isPermaLink="true">https://mpnam.github.io//hobbies/journal/images-size-for-better-performance/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Multiple Galleries</title>
+        <description>&lt;html class=&quot;no-js&quot; lang=&quot;en&quot;&gt;
+&lt;head&gt;
+	&lt;meta content=&quot;charset=utf-8&quot; /&gt;
+&lt;/head&gt;
+
+    &lt;body&gt;
+
+&lt;section id=&quot;content&quot; role=&quot;main&quot;&gt;
+		&lt;div class=&quot;wrapper&quot;&gt;
+	&lt;br /&gt;&lt;br /&gt;
+			&lt;h2&gt;Multiple Galleries&lt;/h2&gt;
+
+
+
+
+&lt;p&gt; Content of your post HERE &lt;/p&gt;
+
+&lt;p&gt; Add as many paragraphs amongst your galleries as you want. &lt;/p&gt;
+
+
+           &lt;!-- Gallery __--&gt;
+			
+
+
+&lt;div class=&quot;gallery masonry-gallery&quot;&gt;
+  
+
+  &lt;figure class=&quot;gallery-item&quot;&gt;
+
+	&lt;header class=&quot;gallery-icon&quot;&gt;
+
+&lt;a href=&quot;https://mpnam.github.io//hobbies/img/galleries/g01/bg1.jpg&quot; class=&quot;popup&quot; title=&quot;IMAGE TITLE&quot; data-caption=&quot;© photorama&quot;&gt;
+&lt;img src=&quot;https://mpnam.github.io//hobbies/img/galleries/g01/bg1.jpg&quot; /&gt;&lt;/a&gt;
+						
+	&lt;/header&gt;	
+		
+   &lt;figcaption class=&quot;gallery-caption&quot;&gt;
+		&lt;div class=&quot;entry-summary&quot; id=&quot;IMAGE TITLE&quot;&gt;
+				&lt;h3&gt;IMAGE TITLE&lt;/h3&gt;
+					&lt;p&gt;© photorama&lt;/p&gt;
+						&lt;/div&gt;
+					&lt;/figcaption&gt;
+				&lt;/figure&gt;
+
+  
+
+  &lt;figure class=&quot;gallery-item&quot;&gt;
+
+	&lt;header class=&quot;gallery-icon&quot;&gt;
+
+&lt;a href=&quot;https://mpnam.github.io//hobbies/img/galleries/g01/bg2.jpg&quot; class=&quot;popup&quot; title=&quot;IMAGE TITLE&quot; data-caption=&quot;© photorama&quot;&gt;
+&lt;img src=&quot;https://mpnam.github.io//hobbies/img/galleries/g01/bg2.jpg&quot; /&gt;&lt;/a&gt;
+						
+	&lt;/header&gt;	
+		
+   &lt;figcaption class=&quot;gallery-caption&quot;&gt;
+		&lt;div class=&quot;entry-summary&quot; id=&quot;IMAGE TITLE&quot;&gt;
+				&lt;h3&gt;IMAGE TITLE&lt;/h3&gt;
+					&lt;p&gt;© photorama&lt;/p&gt;
+						&lt;/div&gt;
+					&lt;/figcaption&gt;
+				&lt;/figure&gt;
+
+  
+
+  &lt;figure class=&quot;gallery-item&quot;&gt;
+
+	&lt;header class=&quot;gallery-icon&quot;&gt;
+
+&lt;a href=&quot;https://mpnam.github.io//hobbies/img/galleries/g01/bg3.jpg&quot; class=&quot;popup&quot; title=&quot;IMAGE TITLE&quot; data-caption=&quot;© photorama&quot;&gt;
+&lt;img src=&quot;https://mpnam.github.io//hobbies/img/galleries/g01/bg3.jpg&quot; /&gt;&lt;/a&gt;
+						
+	&lt;/header&gt;	
+		
+   &lt;figcaption class=&quot;gallery-caption&quot;&gt;
+		&lt;div class=&quot;entry-summary&quot; id=&quot;IMAGE TITLE&quot;&gt;
+				&lt;h3&gt;IMAGE TITLE&lt;/h3&gt;
+					&lt;p&gt;© photorama&lt;/p&gt;
+						&lt;/div&gt;
+					&lt;/figcaption&gt;
+				&lt;/figure&gt;
+
+  
+&lt;/div&gt;
+
+
+&lt;!-- end of GALLERY __ --&gt;
+
+&lt;p&gt; Add as many galleries as you want, including as many photos as you want. Simply edit the &lt;b&gt;FRONT MATTER&lt;/b&gt; of the post, adding the corresponding &lt;b&gt;path&lt;/b&gt;, &lt;b&gt;caption&lt;/b&gt; and &lt;b&gt;copyright&lt;/b&gt; info for each one of your photos. &lt;/p&gt;
+
+           &lt;!-- Gallery __--&gt;
+			
+
+
+&lt;div class=&quot;gallery masonry-gallery&quot;&gt;
+  
+
+  &lt;figure class=&quot;gallery-item&quot;&gt;
+
+	&lt;header class=&quot;gallery-icon&quot;&gt;
+
+&lt;a href=&quot;https://mpnam.github.io//hobbies/img/galleries/g02/bg1.jpg&quot; class=&quot;popup&quot; title=&quot;IMAGE TITLE&quot; data-caption=&quot;© photorama&quot;&gt;
+&lt;img src=&quot;https://mpnam.github.io//hobbies/img/galleries/g02/bg1.jpg&quot; /&gt;&lt;/a&gt;
+						
+	&lt;/header&gt;	
+		
+   &lt;figcaption class=&quot;gallery-caption&quot;&gt;
+		&lt;div class=&quot;entry-summary&quot; id=&quot;IMAGE TITLE&quot;&gt;
+				&lt;h3&gt;IMAGE TITLE&lt;/h3&gt;
+					&lt;p&gt;© photorama&lt;/p&gt;
+						&lt;/div&gt;
+					&lt;/figcaption&gt;
+				&lt;/figure&gt;
+
+  
+
+  &lt;figure class=&quot;gallery-item&quot;&gt;
+
+	&lt;header class=&quot;gallery-icon&quot;&gt;
+
+&lt;a href=&quot;https://mpnam.github.io//hobbies/img/galleries/g02/bg2.jpg&quot; class=&quot;popup&quot; title=&quot;IMAGE TITLE&quot; data-caption=&quot;© photorama&quot;&gt;
+&lt;img src=&quot;https://mpnam.github.io//hobbies/img/galleries/g02/bg2.jpg&quot; /&gt;&lt;/a&gt;
+						
+	&lt;/header&gt;	
+		
+   &lt;figcaption class=&quot;gallery-caption&quot;&gt;
+		&lt;div class=&quot;entry-summary&quot; id=&quot;IMAGE TITLE&quot;&gt;
+				&lt;h3&gt;IMAGE TITLE&lt;/h3&gt;
+					&lt;p&gt;© photorama&lt;/p&gt;
+						&lt;/div&gt;
+					&lt;/figcaption&gt;
+				&lt;/figure&gt;
+
+  
+
+  &lt;figure class=&quot;gallery-item&quot;&gt;
+
+	&lt;header class=&quot;gallery-icon&quot;&gt;
+
+&lt;a href=&quot;https://mpnam.github.io//hobbies/img/galleries/g02/bg3.jpg&quot; class=&quot;popup&quot; title=&quot;IMAGE TITLE&quot; data-caption=&quot;© photorama&quot;&gt;
+&lt;img src=&quot;https://mpnam.github.io//hobbies/img/galleries/g02/bg3.jpg&quot; /&gt;&lt;/a&gt;
+						
+	&lt;/header&gt;	
+		
+   &lt;figcaption class=&quot;gallery-caption&quot;&gt;
+		&lt;div class=&quot;entry-summary&quot; id=&quot;IMAGE TITLE&quot;&gt;
+				&lt;h3&gt;IMAGE TITLE&lt;/h3&gt;
+					&lt;p&gt;© photorama&lt;/p&gt;
+						&lt;/div&gt;
+					&lt;/figcaption&gt;
+				&lt;/figure&gt;
+
+  
+&lt;/div&gt;
+
+
+&lt;!-- end of GALLERY __ --&gt;
+
+		&lt;/div&gt;&lt;!-- end of WRAPPER __ --&gt;
+	&lt;/section&gt;
+
+
+Photography by: &lt;a href=&quot;https://unsplash.com/photos/j0g8taxHZa0&quot;&gt;UNSPLASH&lt;/a&gt;
+&lt;/body&gt;&lt;/html&gt;
+</description>
+        <pubDate>Mon, 01 Feb 2016 00:00:00 +0900</pubDate>
+        <link>https://mpnam.github.io//hobbies/journal/multiple-galleries/</link>
+        <guid isPermaLink="true">https://mpnam.github.io//hobbies/journal/multiple-galleries/</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
