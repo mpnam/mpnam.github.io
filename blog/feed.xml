@@ -5,9 +5,25 @@
     <description>My Dev Journal</description>
     <link>https://mpnam.github.io/blog/</link>
     <atom:link href="https://mpnam.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 28 Jun 2017 18:16:57 +0900</pubDate>
-    <lastBuildDate>Wed, 28 Jun 2017 18:16:57 +0900</lastBuildDate>
+    <pubDate>Sun, 22 Oct 2017 23:27:17 +0900</pubDate>
+    <lastBuildDate>Sun, 22 Oct 2017 23:27:17 +0900</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
+    
+      <item>
+        <title>Deploy react app to Github pages</title>
+        <description>&lt;h2 id=&quot;reactjs&quot;&gt;reactjs&lt;/h2&gt; &lt;p&gt;I love ReactJS (also React-Native), so I will use reactjs for this tutorial. Firstly, let’s create the sample application called &lt;code class=&quot;highlighter-rouge&quot;&gt;pwa&lt;/code&gt;&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;create-react-app pwa&lt;/p&gt; &lt;/blockquote&gt; &lt;p&gt;Just in case you have not installed &lt;code class=&quot;highlighter-rouge&quot;&gt;create-react-app&lt;/code&gt; yet. You can install it by&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;npm install -g create-react-app&lt;/p&gt; &lt;/blockquote&gt; &lt;h2 id=&quot;repository&quot;&gt;repository&lt;/h2&gt; &lt;p&gt;Assumed that you already have the github account named &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;. Let’s create a repository named &lt;code class=&quot;highlighter-rouge&quot;&gt;pwa-demo&lt;/code&gt; on Github. Then, we need to setup &lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt; for our local repository. Assumed that you are in &lt;code class=&quot;highlighter-rouge&quot;&gt;pwa&lt;/code&gt; folder which we have just created before by...</description>
+        <pubDate>Sun, 22 Oct 2017 00:00:00 +0900</pubDate>
+        <link>https://mpnam.github.io/blog/deploy-react-app-to-github-pages/</link>
+        <guid isPermaLink="true">https://mpnam.github.io/blog/deploy-react-app-to-github-pages/</guid>
+        
+        <category>reactjs</category>
+        
+        <category>tutorial</category>
+        
+        
+        <category>Reactjs</category>
+        
+      </item>
     
       <item>
         <title>My Favourite React-Native Project Starter</title>

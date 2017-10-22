@@ -1,6 +1,13 @@
 [
   
     {
+      "title"    : "Deploy react app to Github pages",
+      "tags"     : "reactjs and tutorial",
+      "url"      : "/blog/deploy-react-app-to-github-pages/",
+      "date"     : "22 Oct 2017"
+    } ,
+  
+    {
       "title"    : "My Favourite React-Native Project Starter",
       "tags"     : "react-native, mobile, and tutorial",
       "url"      : "/blog/first-react-native-project/",
