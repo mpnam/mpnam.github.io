@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Javascript Truthy and Falsy - Tech Blog</title>
+    <meta name="author" content="Nam Mai" />
+    <meta name="description" content="Javascript Truthy and Falsy" />
+    <meta name="keywords" content="Javascript Truthy and Falsy, Tech Blog, javascript" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="Tech Blog" property="og:site_name">
+
+    
+
+    
+      <meta content="Javascript Truthy and Falsy" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="My Personal Technical Blog" property="og:description">
+    
+
+    
+      <meta content="https://mpnam.github.io/javascript/2018/01/01/truthy-falsy.html" property="og:url">
+    
+
+    
+      <meta content="2018-01-01T18:34:10+07:00" property="article:published_time">
+      <meta content="https://mpnam.github.io/about/" property="article:author">
+    
+
+    
+      <meta content="https://mpnam.github.io/static/img/avatar.jpg" property="og:image">
+    
+
+    
+      
+        <meta content="javascript" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="Javascript Truthy and Falsy">
+    
+
+    
+      <meta name="twitter:url" content="https://mpnam.github.io/javascript/2018/01/01/truthy-falsy.html">
+    
+
+    
+      <meta name="twitter:description" content="My Personal Technical Blog">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/avatar.jpg" height="75px" width="75px" /></a>
+          <h1 class="author-name">Nam Mai</h1>
+          
+            <div class="profile-about">
+              I am software engineer. Currently doing more in front-end, focused in React and C#.
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://www.facebook.com/phuong.nam.781991" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              
+                <li><a href="https://www.linkedin.com/in/mpnam1991/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-stack-exchange"></i></a></li>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+              <li><a class="about" href="/feed.xml">XML Feed</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Javascript Truthy and Falsy</h1>
+</header>
+
+<span class="time">01 Jan 2018</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/javascript">javascript</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p>Javascripts variables are dynamically typed. While <code class="highlighter-rouge">==</code> operator converts each to a string representation before comparision, <code class="highlighter-rouge">===</code> compares without converting. For example,</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="mi">1</span> <span class="o">==</span> <span class="s1">'1'</span><span class="p">;</span> <span class="c1">// true</span>
+<span class="mi">1</span> <span class="o">===</span> <span class="s1">'1'</span><span class="p">;</span> <span class="c1">// false</span>
+
+<span class="mi">1</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// true</span>
+<span class="mi">1</span> <span class="o">===</span> <span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// false</span></code></pre></figure>
+
+<hr />
+<h2 id="primitive-data-types">Primitive Data Types</h2>
+
+<ul>
+  <li>undefined</li>
+  <li>null</li>
+  <li>boolean</li>
+  <li>number: includes Infinity and NaN</li>
+  <li>string</li>
+  <li>symbol</li>
+  <li>object: includes arrays</li>
+</ul>
+
+<hr />
+<h2 id="truthy-and-falsy">Truthy and Falsy</h2>
+
+<ul>
+  <li>The following values are always falsy:
+    <ul>
+      <li>false</li>
+      <li>0</li>
+      <li>’’ or “”</li>
+      <li>null</li>
+      <li>undefined</li>
+      <li>NaN</li>
+    </ul>
+  </li>
+  <li>Everything else is truthy.</li>
+</ul>
+
+<hr />
+<h2 id="loose-equality-comparisons-with-">Loose Equality Comparisons With ==</h2>
+
+<ul>
+  <li>false, 0, ‘’, and “” are all equivalent.</li>
+  <li>null and undefined are equivalent.</li>
+  <li>NaN is not equivalent to anything, even itself.</li>
+  <li>Infinity and {} is not equivalent to anything excep itself.</li>
+  <li>[] is equivalent to false, 0 and ‘’.</li>
+</ul>
+
+<hr />
+<h2 id="strict-equality-comparisons-with-">Strict Equality Comparisons With ===</h2>
+
+<p>Except NaN is not quivalent to ifseft, anything equivalent to itself but not others.</p>
+
+<hr />
+<h1 id="quiz-1">Quiz 1</h1>
+<p>What is the result of executing this code?</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">||</span> <span class="p">[]</span> <span class="o">||</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="kc">NaN</span> <span class="o">==</span> <span class="kc">NaN</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span></code></pre></figure>
+
+<hr />
+<h1 id="quiz-2">Quiz 2</h1>
+<p>Suppose that I want to call foo() when x and y are identical. The following code is correct?</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">===</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">foo</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>If not, please fix it!</p>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Google + -->
+  <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="https://mpnam.github.io/javascript/2018/01/01/truthy-falsy.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="https://mpnam.github.io/javascript/2017/12/11/javascript-scope.html">Scope in Javascript</a>
+                  
+                    (Categories: <a href="/category/javascript">javascript</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="https://mpnam.github.io/javascript/2017/12/01/javascript-hoisting.html">Javascript Hoisting</a>
+                  
+                    (Categories: <a href="/category/javascript">javascript</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/javascript/2017/12/11/javascript-scope.html">&laquo; Scope in Javascript</a>
+  
+  
+    <a class="next" href="/react/2018/02/01/es6-syntax.html">ES6 syntax &raquo;</a>
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "mpnamblog";
+    var disqus_identifier = "https://mpnam.github.io_Javascript Truthy and Falsy";
+    var disqus_title = "Javascript Truthy and Falsy";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Nam Mai
+          
+            - <a href="https://github.com/mpnam">https://github.com/mpnam</a> - Powered by Jekyll.
+          
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+

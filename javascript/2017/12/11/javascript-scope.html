@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <title>Scope in Javascript - Tech Blog</title>
+    <meta name="author" content="Nam Mai" />
+    <meta name="description" content="Scope in Javascript" />
+    <meta name="keywords" content="Scope in Javascript, Tech Blog, javascript" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <meta content="" property="fb:app_id">
+    <meta content="Tech Blog" property="og:site_name">
+
+    
+
+    
+      <meta content="Scope in Javascript" property="og:title">
+      <meta content="article" property="og:type">
+    
+
+    
+      <meta content="My Personal Technical Blog" property="og:description">
+    
+
+    
+      <meta content="https://mpnam.github.io/javascript/2017/12/11/javascript-scope.html" property="og:url">
+    
+
+    
+      <meta content="2017-12-11T00:18:23+07:00" property="article:published_time">
+      <meta content="https://mpnam.github.io/about/" property="article:author">
+    
+
+    
+      <meta content="https://mpnam.github.io/static/img/avatar.jpg" property="og:image">
+    
+
+    
+      
+        <meta content="javascript" property="article:section">
+      
+    
+
+    
+      
+    
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+
+    
+      <meta name="twitter:title" content="Scope in Javascript">
+    
+
+    
+      <meta name="twitter:url" content="https://mpnam.github.io/javascript/2017/12/11/javascript-scope.html">
+    
+
+    
+      <meta name="twitter:description" content="My Personal Technical Blog">
+    
+
+    
+
+    <!-- Font awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/css/syntax.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/super-search.css">
+    <link rel="stylesheet" href="/static/css/thickbox.css">
+    <link rel="stylesheet" href="/static/css/projects.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="fixed-condition">
+          <a href="/"><img class="profile-avatar" src="/static/img/avatar.jpg" height="75px" width="75px" /></a>
+          <h1 class="author-name">Nam Mai</h1>
+          
+            <div class="profile-about">
+              I am software engineer. Currently doing more in front-end, focused in React and C#.
+            </div>
+          
+          <div class="social">
+            <ul>
+              
+                <li><a href="https://www.facebook.com/phuong.nam.781991" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              
+                <li><a href="https://www.linkedin.com/in/mpnam1991/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-stack-exchange"></i></a></li>
+              
+                <li><a href="#" target="_blank"><i class="fa fa-github"></i></a></li>
+              
+            </ul>
+          </div>
+          <div class="search" id="js-search">
+            <input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+            <ul class="search__results" id="js-search__results"></ul>
+          </div>
+          <hr />
+          <ul class="sidebar-nav">
+            <strong>Navigation</strong>
+            <li><a href="/">Home</a></li>
+            
+              <li><a class="about" href="/about/">About Me</a></li>
+            
+              <li><a class="about" href="/feed.xml">XML Feed</a></li>
+            
+          </ul>
+        </div>
+        <!-- end /.fixed-condition -->
+      </div>
+      <div class="col-sm-8 col-offset-1 main-layout">
+        <header class="post-header">
+  <h1 class="post-title">Scope in Javascript</h1>
+</header>
+
+<span class="time">11 Dec 2017</span>
+
+  <span class="categories">
+    &raquo; <a href="/category/javascript">javascript</a>
+  </span>
+
+
+<div class="content">
+  <div class="post"><p>As other programming languages, Javascript has two types of scopes: global and local.</p>
+
+<hr />
+
+<h2 id="block-statements">Block Statements</h2>
+<p>Unlike function, block statements such as <code class="highlighter-rouge">if</code>, <code class="highlighter-rouge">switch</code>, <code class="highlighter-rouge">for</code>, and <code class="highlighter-rouge">while</code> do not create a new scope. For example,</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"> <span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="s1">'Hi'</span><span class="p">;</span> 
+ <span class="p">}</span>
+ <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">);</span> <span class="c1">// 'Hi'</span></code></pre></figure>
+
+<p><strong>Note:</strong> ES6 introduced <code class="highlighter-rouge">let</code> and <code class="highlighter-rouge">const</code> keywords, which supports the declaration of local scope inside block statements.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"> <span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">test</span> <span class="o">=</span> <span class="s1">'Hi'</span><span class="p">;</span> 
+ <span class="p">}</span>
+ <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">);</span> <span class="c1">// undefined</span></code></pre></figure>
+
+<blockquote>
+  <p>Global scope lives as long as application lives. Local scope lives as long as functions are called and executed.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="context">Context</h2>
+<p>Context is used to refer to the value of <code class="highlighter-rouge">this</code>. The global scope context is always the Window object.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">  <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">foo</span><span class="p">();</span> <span class="c1">// window object</span></code></pre></figure>
+
+<p>The context will change if scope is in the method of an object. For example,</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">  <span class="kd">class</span> <span class="nx">Test</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="p">(</span><span class="k">new</span> <span class="nx">Test</span><span class="p">).</span><span class="nx">foo</span><span class="p">();</span> <span class="c1">// User object</span></code></pre></figure>
+
+<hr />
+
+<h2 id="public-vs-private">Public vs Private</h2>
+<p>Not as other programming languages, Javascript does not have public or private scope. However, we can emulate this feature using closures. For example,</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">  <span class="kd">var</span> <span class="nx">Test</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">privateMethod</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'private'</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">publicMethod</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'public'</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">})();</span>
+
+  <span class="nx">Test</span><span class="p">.</span><span class="nx">publicMethod</span><span class="p">();</span> <span class="c1">// public</span>
+  <span class="nx">Test</span><span class="p">.</span><span class="nx">privateMethod</span><span class="p">();</span> <span class="c1">// throw exeption</span></code></pre></figure>
+
+<hr />
+
+<h2 id="call-apply-vs-bind">Call, Apply vs Bind</h2>
+<p>You can use Call and Apply to change the context while calling a function. For example,</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="s1">'Me'</span><span class="p">,</span> <span class="mi">27</span><span class="p">);</span> <span class="c1">// window object, 'Me', '27'</span>
+<span class="nx">test</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s1">'Me'</span><span class="p">,</span> <span class="mi">27</span><span class="p">);</span> <span class="c1">// window object, 'Me', '27'</span>
+<span class="nx">test</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="s1">'Hi'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Me'</span><span class="p">,</span> <span class="mi">27</span><span class="p">]);</span> <span class="c1">// 'Hi', 'Me', '27'</span></code></pre></figure>
+
+<p>Call and Apply are only different in how to pass the arguments. However, Call is slightly faster in performance than Apply.</p>
+
+<p>Bind is introduced in ES5. Unlike Call and Apply, Bind does not itself call the function. It binds the context and other arguments before calling the function. For example,</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">bind</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s1">'Me'</span><span class="p">,</span> <span class="mi">27</span><span class="p">)();</span> <span class="c1">// window, 'Me', '27'</span></code></pre></figure>
+
+<hr />
+<h1 id="quiz-1">Quiz 1</h1>
+<p>What is the result of executing this code?</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">})();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span></code></pre></figure>
+
+<hr />
+<h1 id="quiz-2">Quiz 2</h1>
+<p>What is the result of executing this code?</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">fullname</span> <span class="o">=</span> <span class="s1">'Dog'</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">fullname</span><span class="p">:</span> <span class="s1">'Cat'</span><span class="p">,</span>
+  <span class="na">props</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">fullname</span><span class="p">:</span> <span class="s1">'Mouse'</span><span class="p">,</span>
+    <span class="na">getFullName</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">fullname</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">getFullName</span><span class="p">());</span>
+
+<span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">getFullName</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">());</span></code></pre></figure>
+</div>
+  <div class="share-page">
+  <span style="float: left;">Share this on &rarr;&nbsp;&nbsp;</span>
+
+  <!-- Twitter -->
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Google + -->
+  <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <!-- Facebook -->
+  <div class="fb-share-button" data-href="https://mpnam.github.io/javascript/2017/12/11/javascript-scope.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</div>
+
+
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+            <div class="panel-body">
+              <h4>Related Posts</h4>
+              <ul>
+            
+                <li class="relatedPost">
+                  <a href="https://mpnam.github.io/javascript/2018/01/01/truthy-falsy.html">Javascript Truthy and Falsy</a>
+                  
+                    (Categories: <a href="/category/javascript">javascript</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+    
+      
+        
+          
+      
+    
+  
+    
+      
+        
+          
+            
+                <li class="relatedPost">
+                  <a href="https://mpnam.github.io/javascript/2017/12/01/javascript-hoisting.html">Javascript Hoisting</a>
+                  
+                    (Categories: <a href="/category/javascript">javascript</a>)
+                  
+                </li>
+          
+          
+        
+      
+    
+  
+  
+  </ul>
+</div>
+
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/javascript/2017/12/01/javascript-hoisting.html">&laquo; Javascript Hoisting</a>
+  
+  
+    <a class="next" href="/javascript/2018/01/01/truthy-falsy.html">Javascript Truthy and Falsy &raquo;</a>
+  
+</div>
+
+<div class="disqus-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var disqus_shortname = "mpnamblog";
+    var disqus_identifier = "https://mpnam.github.io_Scope in Javascript";
+    var disqus_title = "Scope in Javascript";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    /* ]]> */
+  </script>
+</div>
+
+        <footer>
+          &copy; Nam Mai
+          
+            - <a href="https://github.com/mpnam">https://github.com/mpnam</a> - Powered by Jekyll.
+          
+        </footer>
+      </div>
+      <!-- end /.col-sm-8 -->
+    </div>
+    <!-- end /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/super-search.js"></script>
+    <script src="/static/js/thickbox-compressed.js"></script>
+    <script src="/static/js/projects.js"></script>
+  </body>
+</html>
+
